@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Bullets
+  - WaistHigh
+  - Dodge
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Floor
+    uniqueID: 3490321851
+    locked: 0
+  - name: Wall
+    uniqueID: 943249689
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Bullets
+    uniqueID: 3791051493
+    locked: 0
+  - name: AboveBullets
+    uniqueID: 2108689887
+    locked: 0
+  - name: BottomWall
+    uniqueID: 626859377
+    locked: 0

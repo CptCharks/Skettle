@@ -1,0 +1,4 @@
+WASD - Movement
+Left click - Fire
+Left shift - Roll
+Left ctrl - crouch
