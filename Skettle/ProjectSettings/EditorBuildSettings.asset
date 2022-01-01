@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DraftLevels/Draft 1/SkettleFarm.unity
+    path: Assets/Scenes/DraftLevels/Draft 1/SkettleFarm/SkettleFarm.unity
     guid: 7cdc0571b50ee0242a0466e6a9386512
   m_configObjects: {}

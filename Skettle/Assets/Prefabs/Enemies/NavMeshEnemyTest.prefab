@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 1532237969}
   m_Layer: 9
   m_Name: NavMeshEnemyTest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,6 +327,7 @@ MonoBehaviour:
   obj_gun: {fileID: 8437931298740038350}
   gun_gun: {fileID: 8437931298740038353}
   b_isPlayer: 0
+  shootingEnabled: 1
 --- !u!50 &8437931298827156931
 Rigidbody2D:
   serializedVersion: 4
@@ -439,8 +440,17 @@ MonoBehaviour:
   speed: 2
   navMesh: {fileID: 0}
   shootingController: {fileID: 0}
-  vision: {fileID: 0}
+  vision: {fileID: 1532237963}
   playerRef: {fileID: 0}
+  lastKnownPos: {x: 0, y: 0, z: 0}
   distanceToPlayer: 0
   desiredDistanceToPlayer: 3
   gameState: 1
+  millWait: 5
+  currentPatrolPath: {fileID: 0}
+  currentTargetNode: {fileID: 0}
+  lastReachedNode: {fileID: 0}
+  pathMargin: 0.05
+  direction: 1
+  node: 0
+  timeBetweenChases: 2

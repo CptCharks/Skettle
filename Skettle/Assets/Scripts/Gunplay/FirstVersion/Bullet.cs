@@ -65,7 +65,5 @@ public class Bullet : GameplayComponent
             hit.Hit();
             Destroy(gameObject);
         }
-
-        
     }
 }

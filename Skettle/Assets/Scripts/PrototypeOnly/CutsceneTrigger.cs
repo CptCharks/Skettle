@@ -17,6 +17,10 @@ public class CutsceneTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+		/*if(gameManager == null)
+		{
+			gameManager = FindObjectOfType<GameManager>();
+		}*/
         director.Play(cutsceneToPlay, DirectorWrapMode.None);
         gameManager.PauseGame(true);
     }

@@ -69,7 +69,10 @@ public class VisionController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+	if(go_player != null)
+	{
         Gizmos.DrawRay(transform.position, (go_player.transform.position - transform.position).normalized* f_visionRange);
+	}
     }
 
 }

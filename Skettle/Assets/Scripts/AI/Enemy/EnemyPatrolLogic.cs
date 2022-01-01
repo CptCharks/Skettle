@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyPatrolLogic : MonoBehaviour
 {
     public float gunRange;
     public float speed;
+	public float patrolSpeed;
 
     [SerializeField] EnemyNavMeshLogic navMesh;
     [SerializeField] ShootingController shootingController;
@@ -13,8 +15,6 @@ public class EnemyPatrolLogic : MonoBehaviour
 
     [SerializeField] GameObject playerRef;
     [SerializeField] Vector3 lastKnownPos;
-
-
 
 
     Vector3 startMillPos;
@@ -31,6 +31,9 @@ public class EnemyPatrolLogic : MonoBehaviour
         Searching,
         Attacking
     }
+	
+	public UnityEvent onAttack;
+	public UnityEvent onSearch;
 
     public EnemyStates gameState = EnemyStates.Idle;
 
@@ -41,12 +44,17 @@ public class EnemyPatrolLogic : MonoBehaviour
         vision = GetComponent<VisionController>();
         navMesh = GetComponent<EnemyNavMeshLogic>();
 
-        //navMesh.UpdateSpeed(speed);
+        
 
         startMillPos = navMesh.SetPosition(transform.position);
 
         desiredDistanceToPlayer += Random.Range(-1f, 1f);
     }
+	
+	private void Start()
+	{
+		navMesh.UpdateSpeed(speed);
+	}
 
     private void Update()
     {
@@ -63,35 +71,53 @@ public class EnemyPatrolLogic : MonoBehaviour
                 if (vision.b_canSeePlayer)
                 {
                     gameState = EnemyStates.Attacking;
+					onAttack.Invoke();
                 }
                 break;
             case EnemyStates.Patroling:
+				navMesh.UpdateSpeed(patrolSpeed);
+			
                 if (currentPatrolPath == null)
+				{
+					MillAboutShift();
                     return;
-
+				}
+				
                 if(currentTargetNode == null)
                 {
                     currentTargetNode = FindClosestNodeInPath();
                 }
 
                 ProcessPatrol();
-
+				
+				if(vision.b_canSeePlayer)
+				{
+					gameState = EnemyStates.Attacking;
+					navMesh.UpdateSpeed(speed);
+					onAttack.Invoke();
+				}
+				
                 break;
             case EnemyStates.Searching:
                 if (vision.b_canSeePlayer)
                 {
                     gameState = EnemyStates.Attacking;
+					onAttack.Invoke();
                 }
 
-
-                MillAboutShift();
+				ProcessSearch();
+				
+                //MillAboutShift();
 
                 break;
             case EnemyStates.Attacking:
                 if (!vision.b_canSeePlayer)
                 {
                     gameState = EnemyStates.Searching;
+					resumePatrolTimer = 0f;
+					hasReachedLastSpot = false;
                     lastKnownPos = playerRef.transform.position;
+					onSearch.Invoke();
                 }
 
 
@@ -167,8 +193,8 @@ public class EnemyPatrolLogic : MonoBehaviour
     [SerializeField] private Transform lastReachedNode;
     [SerializeField] private float pathMargin = 0.05f;
 
-    [SerializeField] private int direction = 1;
-    [SerializeField] private int node;
+    private int direction = 1;
+    private int node;
 
     private void ProcessPatrol()
     {
@@ -234,6 +260,31 @@ public class EnemyPatrolLogic : MonoBehaviour
 
         return null;
     }
+
+	[SerializeField] float timeTillResumePatrol = 3f;
+	[SerializeField] float resumePatrolTimer = 0f;
+	[SerializeField] bool hasReachedLastSpot = false;
+
+	private void ProcessSearch()
+	{
+		if(resumePatrolTimer >= timeTillResumePatrol)
+		{
+			resumePatrolTimer = 0f;
+			gameState = EnemyStates.Patroling;
+			return;
+		}
+		resumePatrolTimer += Time.deltaTime;
+		
+		if(!hasReachedLastSpot)
+		{
+			navMesh.SetPosition(lastKnownPos);
+		}
+		else
+		{
+			MillAboutShift();
+		}
+		
+	}
 
     public void EnableEnemy(bool activate)
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ConversationManager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class ConversationManager : MonoBehaviour
     GameManager game_Manager;
     ConversationUI conv_UI;
 
+    public UnityEvent conversationEnded = new UnityEvent();
+    public UnityEvent conversationStarted = new UnityEvent();
+	
     // Start is called before the first frame update
     void Awake()
     {
@@ -65,10 +69,9 @@ public class ConversationManager : MonoBehaviour
         ui_isProcessing = false;
     }
 
-
-    public void StartConversation(ConversationStarter starter)
+    public void StartCutsceneConversation(ConversationStarter starter)
     {
-        if (isInConversation)
+	if (isInConversation)
         {
             Debug.LogWarning("Already in conversation when StartConversation was called");
             return;
@@ -85,8 +88,36 @@ public class ConversationManager : MonoBehaviour
         StartCoroutine(ConversationLoop());
     }
 
+    public void EndCutsceneConversation()
+    {
+
+    }
+
+    public void StartConversation(ConversationStarter starter)
+    {
+        if (isInConversation)
+        {
+            Debug.LogWarning("Already in conversation when StartConversation was called");
+            return;
+        }
+
+        conv_Starter = starter;
+        currentConv = conv_Starter.toLoad;
+
+        game_Manager.SetGameplayEnabled(false);
+        //Leaving this out cause seems to not get the game_manager inside the full build atm
+        //game_Manager.SetEnabledPlayerControls(false);
+
+	    conversationStarted.Invoke();
+
+        isInConversation = true;
+        StartCoroutine(ConversationLoop());
+    }
+
     public void EndConversation()
     {
+	conversationEnded.Invoke();
+
         conv_Starter.EndConversation();
         conv_UI.EndConversation();
 

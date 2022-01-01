@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ConversationStarter : MonoBehaviour
 {
-    ConversationManager conv_manager;
+    public ConversationManager conv_manager;
     public Conversation toLoad;
     public UnityEvent onConversationStart;
     public UnityEvent onConversationEnd;
@@ -17,6 +17,11 @@ public class ConversationStarter : MonoBehaviour
 
     public void StartConversation()
     {
+		if(conv_manager == null)
+		{
+			conv_manager = FindObjectOfType<ConversationManager>();
+		}
+		
         if (!conv_manager.isInConversation)
         {
             //Don't know if this is the best place to put this

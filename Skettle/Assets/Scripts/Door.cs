@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
     {
         camera = FindObjectOfType<CameraController>();
         player = FindObjectOfType<PlayerController>();
+		blackEnd = GameObject.Find("BlackPanel").GetComponent<Image>();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

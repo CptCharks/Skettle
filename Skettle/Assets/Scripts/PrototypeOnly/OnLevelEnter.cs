@@ -18,7 +18,4 @@ public class OnLevelEnter : MonoBehaviour
             levelHasBeenStarted = true;
         }
     }
-
-
-
 }
