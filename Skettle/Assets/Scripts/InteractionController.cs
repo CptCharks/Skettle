@@ -13,10 +13,12 @@ using UnityEngine;
 public class InteractionController : GameplayComponent
 {
     public bool somethingInRange;
+    [SerializeField] GameObject eKey;
 
     [SerializeField] Interactable currentTarget;
 
-    [SerializeField] List<Interactable> potentialTargets;
+    [SerializeField] List<Interactable> potentialTargets = new List<Interactable>();
+    List<Interactable> removeTargetList = new List<Interactable>();
 
     Interactable potentialTarget;
     float potentialDistance = 0f;
@@ -26,7 +28,16 @@ public class InteractionController : GameplayComponent
     {
         if(Input.GetKey(KeyCode.E) && currentTarget != null)
         {
-            Interact(Input.GetKey(KeyCode.E));
+            Interact(Input.GetKeyDown(KeyCode.E));
+        }
+
+        if(currentTarget != null)
+        {
+            eKey.SetActive(true);
+        }
+        else
+        {
+            eKey.SetActive(false);
         }
     }
 
@@ -40,6 +51,12 @@ public class InteractionController : GameplayComponent
         potentialDistance = maxDistance;
         foreach(Interactable io in potentialTargets)
         {
+            if(potentialTarget == null)
+            {
+                removeTargetList.Add(potentialTarget);
+                continue;
+            }
+
             if((io.gameObject.transform.position - transform.position).magnitude < potentialDistance)
             {
                 potentialDistance = (io.gameObject.transform.position - transform.position).magnitude;
@@ -47,7 +64,14 @@ public class InteractionController : GameplayComponent
             }
         }
 
-        //currentTarget = potentialTarget;
+        foreach(Interactable io in removeTargetList)
+        {
+            potentialTargets.Remove(io);
+        }
+
+        removeTargetList.Clear();
+
+        currentTarget = potentialTarget;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -56,8 +80,8 @@ public class InteractionController : GameplayComponent
         if (io != null)
         {
             currentTarget = io;
-            potentialTargets.Add(io);
-            CalculateTarget();
+            //potentialTargets.Add(io);
+            //CalculateTarget();
         }
     }
 
@@ -67,8 +91,8 @@ public class InteractionController : GameplayComponent
         if (io != null && currentTarget == io)
         {
             currentTarget = null;
-            potentialTargets.Remove(io);
-            CalculateTarget();
+            //potentialTargets.Remove(io);
+            //CalculateTarget();
         }
     }
 }

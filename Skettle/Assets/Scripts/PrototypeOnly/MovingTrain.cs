@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingTrain : MonoBehaviour
+public class MovingTrain : GameplayComponent
 {
     public Transform startLocation;
 	public Transform endLocation;
 	
 	public float timeBetweenPasses = 4f;
 	float passTimer = 0f;
-	public bool chooChooing = false;
+	public bool chooChooing;
 	[SerializeField] float speed = 1f;
 	
 	[SerializeField] bool repeatAutomatically;
@@ -19,9 +19,9 @@ public class MovingTrain : MonoBehaviour
 	{
 		transform.SetPositionAndRotation(startLocation.position, transform.rotation);
 	}
-	
-	void Update()
-	{
+
+    public override void GameplayUpdate()
+    {
 		if(chooChooing)
 		{
 			isMoving = true;

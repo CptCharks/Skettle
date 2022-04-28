@@ -14,7 +14,10 @@ public class EventTrigger : MonoBehaviour
 	
 	public void OnTriggerEnter2D(Collider2D other)
 	{
-		if(repeatable || (!repeatable && firstShotEnter))
+        if (other.tag != "Player")
+            return;
+
+        if (repeatable || (!repeatable && firstShotEnter))
 		{
 				firstShotEnter = false;
 				onEntered.Invoke();
@@ -23,6 +26,9 @@ public class EventTrigger : MonoBehaviour
 	
 	public void OnTriggerExit2D(Collider2D other)
 	{
+        if (other.tag != "Player")
+            return;
+
 		if(repeatable || (!repeatable && firstShotExit))
 		{
 				firstShotExit = false;

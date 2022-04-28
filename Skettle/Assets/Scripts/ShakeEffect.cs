@@ -61,7 +61,7 @@ public class ShakeEffect : MonoBehaviour
         else
         {
             shakeDuration = 0f;
-            c_transform.localPosition = initialPosition;
+            initialPosition = c_transform.localPosition;
         }
     }
 

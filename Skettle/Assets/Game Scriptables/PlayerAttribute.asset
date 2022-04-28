@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   f_runSpeed: 2
   f_sneakSpeed: 1
-  f_rollSpeed: 2
-  f_rollDistance: 1
+  f_rollSpeed: 4
+  f_rollDistance: 1.7
   f_verticalSpeed: 1
   f_horizontalSpeed: 1

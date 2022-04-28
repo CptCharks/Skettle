@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySimpleTurret : MonoBehaviour
+public class EnemySimpleTurret : GameplayComponent
 {
 	
 	[SerializeField] public Vector3 currentDirection;
@@ -17,12 +17,15 @@ public class EnemySimpleTurret : MonoBehaviour
 		visionController = GetComponent<VisionController>();
 		shootController = GetComponent<ShootingController>();
 	}
-	
-	
+
+
     // Update is called once per frame
-    void Update()
+    public override void GameplayUpdate()
     {
-        if(!hasBeenAlerted)
+        if (!this.gameObject.activeSelf)
+            return;
+
+        if (!hasBeenAlerted)
 		{
 			if(visionController.b_canSeePlayer)
 			{

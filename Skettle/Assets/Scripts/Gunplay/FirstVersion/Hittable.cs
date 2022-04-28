@@ -15,6 +15,7 @@ public class Hittable : MonoBehaviour
 
     public UnityEvent onHit;
     public UnityEvent onBreak;
+    public UnityEvent onDamaged;
 
     public void Hit()
     {
@@ -28,14 +29,52 @@ public class Hittable : MonoBehaviour
             onBreak.Invoke();
         }
 
-        
-
         //Remove this temp hit points section once health controller fixed
         tempHit -= 1f;
-        if(tempHit <= 0f)
+        onDamaged.Invoke();
+
+        if (tempHit <= 0f)
         {
             onBreak.Invoke();
         }
+    }
+
+    public void Hit(int damage)
+    {
+        onHit.Invoke();
+
+        if (b_indestructable)
+            return;
+
+        if (b_instantlyBreak)
+        {
+            onBreak.Invoke();
+        }
+
+
+
+        //Remove this temp hit points section once health controller fixed
+        tempHit -= damage;
+        onDamaged.Invoke();
+
+        if (tempHit <= 0f)
+        {
+            onBreak.Invoke();
+        }
+    }
+
+    public void TriggerInvul(float time)
+    {
+        StartCoroutine(InvulTimer(time));
+    }
+
+    public IEnumerator InvulTimer(float time)
+    {
+        b_indestructable = true;
+
+        yield return new WaitForSeconds(time);
+
+        b_indestructable = false;
     }
 
 }

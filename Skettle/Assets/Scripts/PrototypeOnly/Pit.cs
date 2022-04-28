@@ -27,8 +27,10 @@ public class Pit : MonoBehaviour
 		}
 		else if(other.tag == "Player")
 		{
-			hitController = other.gameObject.GetComponentInChildren<Hittable>();
-			hitController.Hit();
+			hitController = other.gameObject.GetComponent<Hittable>();
+
+            if(hitController != null)
+                hitController.Hit();
 			
 			StartCoroutine(timerForPitfall());
 		}
@@ -38,7 +40,8 @@ public class Pit : MonoBehaviour
 	{
 		//Can probably shake it up with an invuln function on the hit controller or make a seperate function
 		gameManager.SetEnabledPlayerControls(false);
-		hitController.b_indestructable = true;
+        if (hitController != null)
+		    hitController.b_indestructable = true;
 		
 		for(int i = 0; i < timeForPitfall; i++)
 		{
@@ -46,6 +49,8 @@ public class Pit : MonoBehaviour
 		}
 		
 		gameManager.SetEnabledPlayerControls(true);
-		hitController.b_indestructable = false;
+
+        if (hitController != null)
+            hitController.b_indestructable = false;
 	}
 }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DraftLevels/Draft 1/SkettleFarm/SkettleFarm.unity
-    guid: 7cdc0571b50ee0242a0466e6a9386512
+    path: Assets/Scenes/DraftLevels/Draft 1/PlayerScene.unity
+    guid: 19dc4958accab6443bbee868a70260b5
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/TownEntrance.unity
+    guid: 3a20448287652724283dce481b00c223
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/TownSquare.unity
+    guid: fe2768b209926324fa05bb4fc32a7090
   m_configObjects: {}

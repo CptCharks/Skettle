@@ -8,16 +8,6 @@ public class GenericRifle : Gun
     public GameObject bullet_prefab_test;
     public float f_bulletSpeed;
 
-    public float f_betweenShots;
-    [SerializeField] float f_nextTime;
-
-    public float f_reloadSpeed;
-    [SerializeField] bool b_isReloading = false;
-    public int extraAmmo = -999;
-    public int maxExtraAmmo = 999; //temp max
-    public int gunMaxChamber = 6;
-    public int currentAmmo;
-
     [SerializeField] ShakeEffect shake;
     [SerializeField] GunSparkEffects sparks;
 
@@ -37,6 +27,7 @@ public class GenericRifle : Gun
             Bullet bc = bulletClone.GetComponent<Bullet>();
             bc.SetDistance(f_distanceTillDestroy);
             bc.speed = f_bulletSpeed;
+            bc.damage = damagePerBullet;
 
             shake.ShakeOnce(0.1f);
             sparks.ActivateOnce();

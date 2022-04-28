@@ -13,8 +13,13 @@ public class ShootingController : GameplayComponent
 
     public bool shootingEnabled = true;
 
+    public Vector3 mouseDirection;
+    public Vector3 mousePos;
+
     private void Start()
     {
+        mouseDirection = new Vector3();
+
         SetActiveGun(shootingEnabled);
 
         GetGunSprite();
@@ -34,12 +39,14 @@ public class ShootingController : GameplayComponent
             return;
 
 
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        worldPosition.z = obj_gun.transform.position.z;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = obj_gun.transform.position.z;
 
-        Vector3 mouseDir = (obj_gun.transform.position - worldPosition).normalized;
+        Vector3 mouseDir = (obj_gun.transform.position - mousePos).normalized;
 
-        UpdateGun(mouseDir,Input.GetMouseButtonDown(0));
+        mouseDirection = mouseDir;
+
+        UpdateGun(mouseDir,Input.GetMouseButton(0));
     }
 
     public void UpdateGun(Vector3 pointDirection, bool fireDown)

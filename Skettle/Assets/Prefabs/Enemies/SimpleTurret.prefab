@@ -480,8 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelPoint: {fileID: 5313004863901788181}
   reloadGraphics: {fileID: 0}
-  f_distanceTillDestroy: 10
-  bullet_prefab_test: {fileID: 8433212322038293335, guid: 04e3194f4e7497645bce1c19d42ccebc, type: 3}
+  damagePerBullet: 1
   f_betweenShots: 0
   f_nextTime: 0
   f_reloadSpeed: 0
@@ -490,6 +489,9 @@ MonoBehaviour:
   maxExtraAmmo: 999
   gunMaxChamber: 6
   currentAmmo: 0
+  ammoType: 0
+  f_distanceTillDestroy: 10
+  bullet_prefab_test: {fileID: 8433212322038293335, guid: 04e3194f4e7497645bce1c19d42ccebc, type: 3}
 --- !u!1 &5313004865196977727
 GameObject:
   m_ObjectHideFlags: 0

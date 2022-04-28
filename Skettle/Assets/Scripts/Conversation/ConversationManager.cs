@@ -114,12 +114,36 @@ public class ConversationManager : MonoBehaviour
         StartCoroutine(ConversationLoop());
     }
 
+    public void StartConversation(Conversation conversation)
+    {
+        if (isInConversation)
+        {
+            Debug.LogWarning("Already in conversation when StartConversation was called");
+            return;
+        }
+
+        conv_Starter = null;
+        currentConv = conversation;
+
+        game_Manager.SetGameplayEnabled(false);
+        //Leaving this out cause seems to not get the game_manager inside the full build atm
+        //game_Manager.SetEnabledPlayerControls(false);
+
+        conversationStarted.Invoke();
+
+        isInConversation = true;
+        StartCoroutine(ConversationLoop());
+    }
+
     public void EndConversation()
     {
-	conversationEnded.Invoke();
+	    conversationEnded.Invoke();
 
-        conv_Starter.EndConversation();
-        conv_UI.EndConversation();
+        if (conv_Starter != null)
+            conv_Starter.EndConversation();
+        
+        if(conv_UI != null)
+            conv_UI.EndConversation();
 
         game_Manager.SetGameplayEnabled(true);
         //game_Manager.SetEnabledPlayerControls(true);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyPatrolLogic : MonoBehaviour
+public class EnemyPatrolLogic : GameplayComponent
 {
     public float gunRange;
     public float speed;
@@ -56,7 +56,7 @@ public class EnemyPatrolLogic : MonoBehaviour
 		navMesh.UpdateSpeed(speed);
 	}
 
-    private void Update()
+    public override void GameplayUpdate()
     {
         distanceToPlayer = (transform.position - playerRef.transform.position).magnitude;
 

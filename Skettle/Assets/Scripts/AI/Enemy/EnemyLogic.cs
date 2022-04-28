@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLogic : MonoBehaviour
+public class EnemyLogic : GameplayComponent
 {
     public float gunRange;
     public float speed;
@@ -34,7 +34,7 @@ public class EnemyLogic : MonoBehaviour
 
     public EnemyStates gameState = EnemyStates.Idle;
 
-    private void Awake()
+    public void Awake()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         shootingController = GetComponent<ShootingController>();
@@ -48,8 +48,11 @@ public class EnemyLogic : MonoBehaviour
         desiredDistanceToPlayer += Random.Range(-1f, 1f);
     }
 
-    private void Update()
+    public override void GameplayUpdate()
     {
+        if (!this.gameObject.activeSelf)
+            return;
+
         distanceToPlayer = (transform.position - playerRef.transform.position).magnitude;
 
 

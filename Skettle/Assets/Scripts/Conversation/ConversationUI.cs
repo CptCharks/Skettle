@@ -24,6 +24,8 @@ public class ConversationUI : MonoBehaviour
 
     Conversation.Section current_section;
 
+    Coroutine currentDialogueCoroutine;
+
     public void Awake()
     {
         conv_manager = FindObjectOfType<ConversationManager>();
@@ -31,6 +33,7 @@ public class ConversationUI : MonoBehaviour
 
     public void EndConversation()
     {
+        
         chatSystem.SetActive(false);
         leftImage.gameObject.SetActive(false);
         rightImage.gameObject.SetActive(false);
@@ -38,6 +41,12 @@ public class ConversationUI : MonoBehaviour
 
     public void SetupConversation(Conversation.Section section)
     {
+        textIsScrolling = false;
+        if(currentDialogueCoroutine != null)
+            StopCoroutine(currentDialogueCoroutine);
+
+        chatBox.text = "";
+
         chatSystem.SetActive(true);
 
         LoadNextSecton(section);
@@ -103,6 +112,11 @@ public class ConversationUI : MonoBehaviour
         }
 
 
+        textIsScrolling = false;
+        if (currentDialogueCoroutine != null)
+            StopCoroutine(currentDialogueCoroutine);
+
+        chatBox.text = "";
 
         current_section = section;
 
@@ -110,7 +124,7 @@ public class ConversationUI : MonoBehaviour
 
         //Sub divide this to a phrase loader
         //chatBox.text = section.phrase;
-        StartCoroutine(ScrollText());
+        currentDialogueCoroutine = StartCoroutine(ScrollText());
 
 
         //Do checks to see which side is talking and move/highlight them appropriately
@@ -162,7 +176,8 @@ public class ConversationUI : MonoBehaviour
         if (textIsScrolling == true)
         {
             textIsScrolling = false;
-            StopCoroutine(ScrollText());
+            if (currentDialogueCoroutine != null)
+                StopCoroutine(currentDialogueCoroutine);
 
             chatBox.text = current_section.phrase;
         }

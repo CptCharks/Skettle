@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecae0a63b1d7874881fb97763e6f2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ba_colliderAlligence: 2
+  ba_colliderAlligence: 1
   b_instantlyBreak: 0
   b_indestructable: 0
   tempHit: 3
@@ -210,8 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelPoint: {fileID: 8437931298602444643}
   reloadGraphics: {fileID: 0}
-  f_distanceTillDestroy: 10
-  bullet_prefab_test: {fileID: 8433212322038293335, guid: 04e3194f4e7497645bce1c19d42ccebc, type: 3}
+  damagePerBullet: 1
   f_betweenShots: 0
   f_nextTime: 0
   f_reloadSpeed: 0
@@ -220,6 +219,9 @@ MonoBehaviour:
   maxExtraAmmo: 999
   gunMaxChamber: 6
   currentAmmo: 0
+  ammoType: 0
+  f_distanceTillDestroy: 10
+  bullet_prefab_test: {fileID: 8433212322038293335, guid: 04e3194f4e7497645bce1c19d42ccebc, type: 3}
 --- !u!1 &8437931298827156929
 GameObject:
   m_ObjectHideFlags: 0

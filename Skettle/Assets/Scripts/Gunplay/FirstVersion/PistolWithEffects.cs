@@ -7,18 +7,10 @@ public class PistolWithEffects : Gun
     //Will probably leave the bullet prefab in the ammo type definitions
     public GameObject bullet_prefab_test;
 
-    public float f_betweenShots;
-    [SerializeField] float f_nextTime;
-
-    public float f_reloadSpeed;
-    [SerializeField] bool b_isReloading = false;
-    public int extraAmmo = -999;
-    public int maxExtraAmmo = 999; //temp max
-    public int gunMaxChamber = 6;
-    public int currentAmmo;
-
     [SerializeField] ShakeEffect shake;
     [SerializeField] GunSparkEffects sparks;
+
+    
 
     public void Awake()
     {
@@ -34,6 +26,7 @@ public class PistolWithEffects : Gun
             var bulletClone = GameObject.Instantiate(bullet_prefab_test, null, true);
             bulletClone.transform.SetPositionAndRotation(barrelPoint.position, barrelPoint.rotation);
             bulletClone.GetComponent<Bullet>().SetDistance(f_distanceTillDestroy);
+            bulletClone.GetComponent<Bullet>().damage = damagePerBullet;
             shake.ShakeOnce(0.1f);
             sparks.ActivateOnce();
 

@@ -7,16 +7,6 @@ public class GenericShotgun : Gun
     //Will probably leave the bullet prefab in the ammo type definitions
     public GameObject bullet_prefab_test;
 
-    public float f_betweenShots;
-    [SerializeField] float f_nextTime;
-
-    public float f_reloadSpeed;
-    [SerializeField] bool b_isReloading = false;
-    public int extraAmmo = -999;
-    public int maxExtraAmmo = 999; //temp max
-    public int gunMaxChamber = 6;
-    public int currentAmmo;
-
     [SerializeField] ShakeEffect shake;
     [SerializeField] GunSparkEffects sparks;
     [SerializeField] float f_bulletSpread;
@@ -36,16 +26,19 @@ public class GenericShotgun : Gun
             var bulletClone1 = GameObject.Instantiate(bullet_prefab_test, null, true);
             bulletClone1.transform.SetPositionAndRotation(barrelPoint.position, barrelPoint.rotation);
             bulletClone1.GetComponent<Bullet>().SetDistance(f_distanceTillDestroy);
+            bulletClone1.GetComponent<Bullet>().damage = damagePerBullet;
 
             var bulletClone2 = GameObject.Instantiate(bullet_prefab_test, null, true);
             bulletClone2.transform.SetPositionAndRotation(barrelPoint.position, barrelPoint.rotation * Quaternion.Euler(Vector3.forward * f_bulletSpread));
             Bullet bc2 = bulletClone2.GetComponent<Bullet>();
+            bc2.damage = damagePerBullet;
             bc2.SetDistance(f_distanceTillDestroy);
             bc2.speed = Random.Range(bc2.speed - f_bulletVarriableSpeed, bc2.speed + f_bulletVarriableSpeed);
 
             var bulletClone3 = GameObject.Instantiate(bullet_prefab_test, null, true);
             bulletClone3.transform.SetPositionAndRotation(barrelPoint.position, barrelPoint.rotation * Quaternion.Euler(Vector3.forward * -f_bulletSpread));
             Bullet bc3 = bulletClone3.GetComponent<Bullet>();
+            bc3.damage = damagePerBullet;
             bc3.SetDistance(f_distanceTillDestroy);
             bc3.speed = Random.Range(bc2.speed - f_bulletVarriableSpeed, bc2.speed + f_bulletVarriableSpeed);
 

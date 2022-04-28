@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameManagerAccess : MonoBehaviour
 {
 	public GameManager gameManager;
-	
+
 	
 	public void Awake()
 	{
 		gameManager = FindObjectOfType<GameManager>();
-	}
+        
+    }
 	
     public void PauseGame(bool pauseGame)
 	{
@@ -43,8 +44,13 @@ public class GameManagerAccess : MonoBehaviour
 		gameManager.GetAllGameplayObjects();
     }
 
-    /*public IEnumerator GetAllGameplayObjectsAsync()
+    public void FinishStage()
     {
-
-    }*/
+        gameManager.FinishStage();
+    }
+    
+    public void FailStage()
+    {
+        gameManager.FailStage();
+    }
 }

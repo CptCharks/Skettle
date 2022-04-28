@@ -10,9 +10,17 @@ public class PlayerController : GameplayComponent
     //Direction you want to go in
     [SerializeField] private Vector3 v3_controlDirection;
 
+    //Direction of the mouse
+    [SerializeField] private Vector3 v3_aimDirection;
+
     [SerializeField] private float f_currentSpeed = 0;
+    [SerializeField] private float f_currentSpeedAbs = 0;
 
     [SerializeField] CharacterAttributes attributes;
+
+    public ShootingController shootingController;
+    public Hittable healthController;
+
 
     public float f_runSpeed;
     public float f_sneakSpeed;
@@ -28,6 +36,9 @@ public class PlayerController : GameplayComponent
     [SerializeField] private bool b_isRolling;
     [SerializeField] private bool b_isHit;
 
+    [SerializeField] private float timeSinceLastRoll = 0;
+    [SerializeField] private float timeBetweenRolls = 1.5f;
+
     //Add a listener for when isSneaking is changed
     [SerializeField] private bool b_isSneaking;
 
@@ -41,9 +52,14 @@ public class PlayerController : GameplayComponent
 
     [SerializeField] private Animator playerAnimator;
 
+    public Sprite playerStand;
+    public Sprite playerRoll;
+
     // Start is called before the first frame update
     void Start()
     {
+        shootingController = GetComponentInChildren<ShootingController>();
+
         playerAnimator = GetComponentInChildren<Animator>();
 
         damageCollider = damageController.GetComponent<Collider2D>();
@@ -97,6 +113,7 @@ public class PlayerController : GameplayComponent
 
         if (b_isRolling)
         {
+            //playerSprite.sprite = playerRoll;
             playerSprite.sortingLayerName = "AboveBullets";
             damageCollider.enabled = false;
             damageController.layer = 10;
@@ -104,6 +121,7 @@ public class PlayerController : GameplayComponent
         }
         else
         {
+            //playerSprite.sprite = playerStand;
             playerSprite.sortingLayerName = "Default";
             damageCollider.enabled = true;
             damageController.layer = 8;
@@ -114,6 +132,37 @@ public class PlayerController : GameplayComponent
         v3_controlDirection = new Vector3(f_hor, f_ver).normalized;
 
         Move(v3_controlDirection, roll);
+
+        UpdateAnimation();
+    }
+
+    public void UpdateAnimation()
+    {
+        if (shootingController.shootingEnabled)
+        {
+            v3_playerDirection = (shootingController.mousePos - gameObject.transform.position).normalized;
+            playerAnimator.SetFloat("Vertical_Movement", v3_playerDirection.y);
+            playerAnimator.SetFloat("Horizontal_Movement", v3_playerDirection.x);
+
+        }
+        else
+        {
+            //Get the last direction the player moved in. Used to calculate direction facing
+            v3_playerDirection = v3_controlDirection;
+            playerAnimator.SetFloat("Vertical_Movement", v3_playerDirection.y);
+            playerAnimator.SetFloat("Horizontal_Movement", v3_playerDirection.x);
+        }
+
+        if(Vector3.Dot(v3_controlDirection,v3_playerDirection) <= 0)
+        {
+            f_currentSpeedAbs = -f_currentSpeed;
+        }
+        else
+        {
+            f_currentSpeedAbs = f_currentSpeed;
+        }
+
+        playerAnimator.SetFloat("Speed", f_currentSpeedAbs);
     }
 
     public void Move(Vector3 v3_controlDir, bool b_roll)
@@ -123,10 +172,12 @@ public class PlayerController : GameplayComponent
 
         if (b_isRolling)
         {
+            timeSinceLastRoll = 0;
             return;
         }
 
-        if (b_roll)
+
+        if (b_roll && (timeSinceLastRoll > timeBetweenRolls))
         {
             b_isRolling = true;
             StartCoroutine(RollProcess());
@@ -136,6 +187,8 @@ public class PlayerController : GameplayComponent
             //Start roll animation
             //Start "physics" calculations
         }
+
+        timeSinceLastRoll += Time.deltaTime;
 
         if (v3_controlDir.magnitude < 0.01 && v3_controlDir.magnitude > -0.01)
         {
@@ -151,11 +204,6 @@ public class PlayerController : GameplayComponent
             {
                 f_currentSpeed = f_runSpeed;
             }
-
-            //Get the last direction the player moved in. Used to calculate direction facing
-            v3_playerDirection = v3_controlDir;
-            playerAnimator.SetFloat("Vertical_Movement", v3_playerDirection.x);
-            playerAnimator.SetFloat("Horizontal_Movement", v3_playerDirection.y);
         }
 
         //Probably need to change to a rigidbody system

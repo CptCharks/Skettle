@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : GameplayComponent
+public class Bullet : MonoBehaviour//GameplayComponent
 {
     public enum BulletAlligence
     {
         Friendly,
         Dangerous,
-        Neutral
+        Neutral,
+        Wall
     }
 
     public BulletAlligence alligence;
-    public float damage;
+    public int damage;
     public float speed;
     private float f_distanceTillDestroyed = 100f;
     private float f_currentDistance = 0f;
@@ -35,10 +36,10 @@ public class Bullet : GameplayComponent
     }
     */
     //This is here until we can get the register/deregister issue solved
-    public override void GameplayUpdate()
+    /*public override void GameplayUpdate()
     {
     
-    }
+    }*/
     public void Update()
     {
         transform.position += transform.right * speed * Time.deltaTime;
@@ -62,7 +63,7 @@ public class Bullet : GameplayComponent
         if((hit != null) && (hit.ba_colliderAlligence != alligence))
         {
             Debug.Log("Hit");
-            hit.Hit();
+            hit.Hit(damage);
             Destroy(gameObject);
         }
     }
