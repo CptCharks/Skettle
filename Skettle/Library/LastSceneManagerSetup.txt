@@ -1,13 +1,21 @@
 sceneSetups:
-- path: Assets/Scenes/DraftLevels/Draft 2/Player Scene 2.unity
+- path: Assets/Scenes/DraftLevels/Draft 2/PlayerScene2.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/TownEntrance.unity
-  isLoaded: 1
+- path: Assets/Scenes/DraftLevels/Draft 2/MainMenu.unity
+  isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/TownSquare.unity
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/HomeFarm.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/MountainPass.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/TownCrossroads.unity
   isLoaded: 1
   isActive: 0
   isSubScene: 0

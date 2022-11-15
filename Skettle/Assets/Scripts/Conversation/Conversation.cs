@@ -30,6 +30,16 @@ public class Conversation : ScriptableObject
         //Basically using v for anything I might need to trigger animation wise
         public UnityEvent trigger;
 
+        public bool sectionIsPrompt;
+        public List<Prompt> prompts;
+
+    }
+
+    public class Prompt
+    {
+        [TextArea]
+        public string promptText;
+        public string prompt_ID;
     }
 
     public List<Section> sections;

@@ -6,12 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DraftLevels/Draft 1/PlayerScene.unity
-    guid: 19dc4958accab6443bbee868a70260b5
+    path: Assets/Scenes/DraftLevels/Draft 2/MainMenu.unity
+    guid: efff311f61b51534a8e3b98c449791b7
   - enabled: 1
-    path: Assets/Scenes/DraftLevels/Draft 2/TownEntrance.unity
-    guid: 3a20448287652724283dce481b00c223
+    path: Assets/Scenes/DraftLevels/Draft 2/PlayerScene2.unity
+    guid: d8baa896f4457c64e82e79e262e7aa49
   - enabled: 1
-    path: Assets/Scenes/DraftLevels/Draft 2/TownSquare.unity
-    guid: fe2768b209926324fa05bb4fc32a7090
+    path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/HomeFarm.unity
+    guid: 3677f2e945c469648bf5f8c8c3c76c4c
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/BulletShop.unity
+    guid: 1ad99ddf7233cb647895940a0e579251
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/TownMuseum.unity
+    guid: 05e857285ca99b54695cc7b375eefb9c
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/HotelOffice.unity
+    guid: 1f3471974c31ab3458f3b539669cdab0
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/FirstFarm/FirstFarm_D2.unity
+    guid: e8ade3b4cea329048a6abf3cbf5c5410
   m_configObjects: {}

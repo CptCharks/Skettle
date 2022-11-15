@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Temp before moving to cinemachine. May still use it just for player control though
 public class CameraController : MonoBehaviour
 {
 
@@ -10,6 +11,7 @@ public class CameraController : MonoBehaviour
     public float f_cameraSpeed = 0.5f;
     public float distanceFromTarget = 5f;
 
+    //TODO: use the offset to give the player a further view in the direction they aim
     public Vector4 cameraOffSets;
 
     [SerializeField] private bool b_freezeCamera;
@@ -19,7 +21,6 @@ public class CameraController : MonoBehaviour
     {
         if (t_target == null)
             b_freezeCamera = true;
-
 
     }
 

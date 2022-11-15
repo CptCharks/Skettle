@@ -29,6 +29,12 @@ TextureImporter:
   - first:
       213: -4617418375764675270
     second: PlayerSideBlobs_8
+  - first:
+      213: -5408218744966395875
+    second: PlayerSideBlobs_9
+  - first:
+      213: -8268690523016971086
+    second: PlayerSideBlobs_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -314,6 +320,48 @@ TextureImporter:
       bones: []
       spriteID: a357f2d8372abefb0800000000000000
       internalID: -4617418375764675270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSideBlobs_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d184ba694b522f4b0800000000000000
+      internalID: -5408218744966395875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSideBlobs_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc3fe957c5bf3d80800000000000000
+      internalID: -8268690523016971086
       vertices: []
       indices: 
       edges: []

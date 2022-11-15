@@ -30,17 +30,19 @@ public class PlayerController : GameplayComponent
     public float f_verticalSpeed;
     public float f_horizontalSpeed;
 
-    [SerializeField] public bool b_controlsDisabled;
-
     //Bools if you're hit staggered or rolling
     [SerializeField] private bool b_isRolling;
     [SerializeField] private bool b_isHit;
+    [SerializeField] private bool b_isCrouched;
+    [SerializeField] private bool b_isStunned;
+    [SerializeField] private bool b_isAlive;
+
+    [SerializeField] public bool b_controlsDisabled;
+
+
 
     [SerializeField] private float timeSinceLastRoll = 0;
     [SerializeField] private float timeBetweenRolls = 1.5f;
-
-    //Add a listener for when isSneaking is changed
-    [SerializeField] private bool b_isSneaking;
 
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private GameObject detectionCollider;
@@ -52,8 +54,15 @@ public class PlayerController : GameplayComponent
 
     [SerializeField] private Animator playerAnimator;
 
+    [SerializeField] private GameObject playerCorpse_pf;
+
     public Sprite playerStand;
     public Sprite playerRoll;
+
+    public Color flashColor;
+    public float flashRate = 0.25f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,12 +73,19 @@ public class PlayerController : GameplayComponent
 
         damageCollider = damageController.GetComponent<Collider2D>();
 
+        healthController = GetComponentInChildren<Hittable>();
+
+        damageController = healthController.gameObject;
+
         movementCollider = GetComponent<Collider2D>();
 
         //Can add an update by automatically grabing a file called "player attributes"
         UpdateAttributes();
 
         b_controlsDisabled = false;
+        b_isAlive = true;
+        b_isStunned = false;
+
 
         v3_playerDirection = new Vector3(1, 0, 0);
         v3_controlDirection = new Vector3(0, 0, 0);
@@ -95,11 +111,16 @@ public class PlayerController : GameplayComponent
         float f_hor = Input.GetAxis("Horizontal");
         float f_ver = Input.GetAxis("Vertical");
         bool roll = Input.GetButton("Fire3");
-        b_isSneaking = Input.GetButton("Fire1"); //I Think this is ctrl. Need to rename the inputs
 
-        if(b_isSneaking)
+        b_isCrouched = Input.GetButton("Fire1"); //I Think this is ctrl. Need to rename the inputs
+
+        if(b_isRolling || b_isStunned || b_isHit)
         {
-            
+            b_isCrouched = false;
+        }
+
+        if(b_isCrouched)
+        {
             crouchText.SetActive(true);
             detectionCollider.layer = 9;
         }
@@ -109,7 +130,7 @@ public class PlayerController : GameplayComponent
             detectionCollider.layer = 0;
         }
 
-        playerAnimator.SetBool("Crouch", b_isSneaking);
+        
 
         if (b_isRolling)
         {
@@ -131,13 +152,18 @@ public class PlayerController : GameplayComponent
 
         v3_controlDirection = new Vector3(f_hor, f_ver).normalized;
 
-        Move(v3_controlDirection, roll);
-
+        Move(v3_controlDirection,roll);
         UpdateAnimation();
     }
 
     public void UpdateAnimation()
     {
+        playerAnimator.SetBool("Crouch", b_isCrouched);
+
+        playerAnimator.SetBool("Roll", b_isRolling);
+
+        playerAnimator.SetBool("Knockback", b_isHit);
+
         if (shootingController.shootingEnabled)
         {
             v3_playerDirection = (shootingController.mousePos - gameObject.transform.position).normalized;
@@ -170,6 +196,9 @@ public class PlayerController : GameplayComponent
         if (b_isHit)
             return;
 
+        if (b_isStunned)
+            return;
+
         if (b_isRolling)
         {
             timeSinceLastRoll = 0;
@@ -180,12 +209,7 @@ public class PlayerController : GameplayComponent
         if (b_roll && (timeSinceLastRoll > timeBetweenRolls))
         {
             b_isRolling = true;
-            StartCoroutine(RollProcess());
-
-            playerAnimator.SetTrigger("Roll");
-
-            //Start roll animation
-            //Start "physics" calculations
+            StartCoroutine(RollProcess(v3_playerDirection));
         }
 
         timeSinceLastRoll += Time.deltaTime;
@@ -196,7 +220,7 @@ public class PlayerController : GameplayComponent
         }
         else
         {
-            if (b_isSneaking)
+            if (b_isCrouched)
             {
                 f_currentSpeed = f_sneakSpeed;
             }
@@ -210,68 +234,140 @@ public class PlayerController : GameplayComponent
         transform.position += v3_controlDir * f_currentSpeed * Time.deltaTime;
     }
 
-    //TODO: Test the OnHit Disruption system. Currently not implemented
-
-    public void OnHit(bool disrupting, float severity, Vector3 incomingDirection)
+    public void OnHit(bool disrupting, float force, Vector3 incomingDirection)
     {
-        if (disrupting)
-        {
-            playerAnimator.SetTrigger("Knockback");
-        }
+        if (b_isStunned)
+            b_isStunned = false;
 
         b_isHit = disrupting;
-        b_isSneaking = !b_isHit;
-        StartCoroutine(KnockBackprocess(severity, incomingDirection));
+        if (b_isHit)
+        {
+            b_isCrouched = false;
+            StartCoroutine(KnockBackprocess(force, incomingDirection));
+        }
     }
 
-    IEnumerator KnockBackprocess(float severity, Vector3 incomingDir)
+    public void OnStun(float stunLength)
+    {
+        if (!b_isHit || !b_isStunned)
+        {
+            b_isStunned = true;
+            StartCoroutine(StunProcess(stunLength));
+        }
+    }
+
+    public void StartInvul(float time)
+    {
+        StartCoroutine(FlashPlayer(time));
+    }
+
+    IEnumerator FlashPlayer(float time)
+    {
+        float timer = 0;
+        bool flash = true;
+
+
+        Color startColor = playerSprite.color;
+
+        while (timer < time)
+        {
+            if (flash)
+            {
+                playerSprite.color = flashColor;
+            }
+            else
+            {
+                playerSprite.color = startColor;
+            }
+
+            flash = !flash;
+
+            yield return new WaitForSeconds(flashRate);
+
+            timer += flashRate;
+        }
+
+        playerSprite.color = startColor;
+    }
+
+    IEnumerator KnockBackprocess(float force, Vector3 incomingDir)
     {
         Vector3 startingPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
+        //Timer to allow a player out of a stun. 2 second max
+        float knockbackTimer = 0f;
+
         while(b_isHit)
         {
-            //Figure out a good either piecewise function for severity or something. 
-            //Small shots shouldn't effect the player, rough shots should quickly stop the player, severe shots should send the player flying back.
-            transform.position += v3_playerDirection * severity * Time.deltaTime;
 
-            if ((startingPos - transform.position).magnitude >= severity*5f)
+            transform.position += v3_playerDirection * force * Time.deltaTime;
+
+            if (((startingPos - transform.position).magnitude >= force * 5f) || (knockbackTimer >= 2f))
             {
                 b_isRolling = false;
             }
+
+            knockbackTimer += Time.deltaTime;
 
             yield return new WaitForEndOfFrame();
         }
     }
 
-    IEnumerator RollProcess()
+    IEnumerator RollProcess(Vector3 v3_rollDirection)
     {
         //Vector3 startingPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         //This should all the player to roll into an object and not get stuck
         float distanceRolled = 0f;
 
-
         //Change collision layers to not collide with the tables
         //movementCollider.
+        bool previousShootState = shootingController.shootingEnabled;
+
+        shootingController.SetGunEnabled(false);
 
         while (b_isRolling)
         {
-            transform.position += v3_playerDirection * f_rollSpeed * Time.deltaTime;
+            transform.position += v3_rollDirection * f_rollSpeed * Time.deltaTime;
 
-            distanceRolled += (v3_playerDirection * f_rollSpeed * Time.deltaTime).magnitude;
+            distanceRolled += (v3_rollDirection * f_rollSpeed * Time.deltaTime).magnitude;
 
             if (/*(startingPos - transform.position).magnitude*/ distanceRolled >= f_rollDistance)
             {
-                ExitRoll();
+                b_isRolling = false;
             }
             
             yield return new WaitForEndOfFrame(); 
         }
+
+        shootingController.SetGunEnabled(previousShootState);
     }
 
-    public void ExitRoll()
+    IEnumerator StunProcess(float stunDuration)
     {
-        b_isRolling = false;
+        float stunTimer = stunDuration;
+
+        while(b_isStunned)
+        {
+            if(stunTimer <= 0)
+            {
+                b_isStunned = false;
+            }
+
+            stunTimer -= Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        var corpse = Instantiate(playerCorpse_pf, transform.position, transform.rotation);
+
+        //Destroy(corpse, 2.3f);
+        FindObjectOfType<RespawnManager>().OnPlayerDeath();
+
+        healthController.ResetHealth();
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -281,5 +377,24 @@ public class PlayerController : GameplayComponent
         v3_controlDirection = new Vector3(0, 0, 0);
         Move(v3_controlDirection, false);
         */
+    }
+
+    //Respawn points managed here
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Respawn")
+        {
+            FindObjectOfType<RespawnManager>().SetNewRespawnPoint(collision.gameObject);
+        }
+    }
+
+    public void SetSpawnPoint(GameObject newPoint)
+    {
+        FindObjectOfType<RespawnManager>().SetNewRespawnPoint(newPoint);
+    }
+
+    public void SetPlayerPosition(Transform target)
+    {
+        transform.SetPositionAndRotation(target.position, transform.rotation);
     }
 }

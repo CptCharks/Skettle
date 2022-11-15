@@ -8,6 +8,21 @@ TextureImporter:
   - first:
       213: 8322265378770196802
     second: OutsideDoor_1
+  - first:
+      213: 9099155828872515319
+    second: OutsideDoor_2
+  - first:
+      213: 2264490314283200918
+    second: OutsideDoor_3
+  - first:
+      213: 3912945737716534752
+    second: OutsideDoor_4
+  - first:
+      213: 380304860496888235
+    second: OutsideDoor_5
+  - first:
+      213: 1229034388751042446
+    second: OutsideDoor_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -74,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +113,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -146,6 +161,111 @@ TextureImporter:
       bones: []
       spriteID: 249112cc440ae7370800000000000000
       internalID: 8322265378770196802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutsideDoor_2
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 0
+        width: 39
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe0fd75402b64e70800000000000000
+      internalID: 9099155828872515319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutsideDoor_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 0
+        width: 24
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 691b92c61f51d6f10800000000000000
+      internalID: 2264490314283200918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutsideDoor_4
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 0
+        width: 24
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ed09f1ba639d4630800000000000000
+      internalID: 3912945737716534752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutsideDoor_5
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 0
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba18544714d174500800000000000000
+      internalID: 380304860496888235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutsideDoor_6
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 0
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87ce3ec3486e0110800000000000000
+      internalID: 1229034388751042446
       vertices: []
       indices: 
       edges: []

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 	public float timeActive = 1f;
-	
+
+    public Bullet.BulletAlligence alligence;
+
     void Start()
 	{
 		Destroy(gameObject, timeActive);
@@ -16,7 +18,10 @@ public class Explosion : MonoBehaviour
 		var hittable = other.GetComponent<Hittable>();
 		if(hittable != null)
 		{
-			hittable.Hit();
+            if (hittable.ba_colliderAlligence != alligence)
+            {
+                hittable.Hit();
+            }
 		}
 	}
 }

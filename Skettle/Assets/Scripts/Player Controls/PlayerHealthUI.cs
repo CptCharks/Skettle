@@ -16,6 +16,7 @@ public class PlayerHealthUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + playerHeatlh.tempHit.ToString("0");
+        if(healthText != null)
+            healthText.text = /*"Health: " + */playerHeatlh.tempHit.ToString("0");
     }
 }

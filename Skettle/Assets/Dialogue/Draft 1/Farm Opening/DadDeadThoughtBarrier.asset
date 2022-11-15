@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a06d17beb6b55145b51dd293b2ac545, type: 3}
+  m_Name: DadDeadThoughtBarrier
+  m_EditorClassIdentifier: 
+  sections:
+  - phrase: You need to get out of here now.
+    currentChatter: 
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0

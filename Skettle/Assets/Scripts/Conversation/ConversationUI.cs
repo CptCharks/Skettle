@@ -14,6 +14,10 @@ public class ConversationUI : MonoBehaviour
     public GameObject chatSystem;
     public Image leftImage;
     public Image rightImage;
+    public Image dialogueBox;
+
+    public Sprite dialogueGeneric;
+    public Sprite dialogueCharacter;
 
     Character previousLeftCharacter;
     Character.EmoteStruct previousLeftEmote;
@@ -54,6 +58,17 @@ public class ConversationUI : MonoBehaviour
 
     public void LoadNextSecton(Conversation.Section section)
     {
+        if(section.currentChatter == "")
+        {
+            //Load generic dialogue box rather than character specific one
+            dialogueBox.sprite = dialogueGeneric;
+        }
+        else
+        {
+            dialogueBox.sprite = dialogueCharacter;
+        }
+
+
         /*
         if (previousLeftCharacter != section.leftCharacter)
         {
@@ -180,6 +195,8 @@ public class ConversationUI : MonoBehaviour
                 StopCoroutine(currentDialogueCoroutine);
 
             chatBox.text = current_section.phrase;
+
+            conv_manager.ScrollReturnSignal();
         }
 
         //Add different sections for different parts of the UI (like characters moving, or just make it impossible to skip that

@@ -43,14 +43,4 @@ public class GameManagerAccess : MonoBehaviour
     {
 		gameManager.GetAllGameplayObjects();
     }
-
-    public void FinishStage()
-    {
-        gameManager.FinishStage();
-    }
-    
-    public void FailStage()
-    {
-        gameManager.FailStage();
-    }
 }

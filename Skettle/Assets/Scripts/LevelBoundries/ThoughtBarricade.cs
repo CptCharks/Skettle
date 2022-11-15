@@ -8,13 +8,17 @@ public class ThoughtBarricade : MonoBehaviour
     int numberOfConversations;
     [SerializeField] Conversation[] conversations;
 
-    [SerializeField] ConversationManager conversationManager;
+    protected DialogueBeginEvent dialogueBeginEvent;
 
     private void Start()
     {
-        conversationManager = FindObjectOfType<ConversationManager>();
-
         numberOfConversations = conversations.Length;
+    }
+
+    public void OnEnable()
+    {
+        dialogueBeginEvent = (DialogueBeginEvent)Resources.Load("GameEvents/DialogueBeginEvent", typeof(DialogueBeginEvent));
+        dialogueBeginEvent.dialogueToBegin = conversations[0];
     }
 
     void CalculateWhatToDo()
@@ -28,8 +32,9 @@ public class ThoughtBarricade : MonoBehaviour
             timesHit = 0;
         }
 
-        
-        conversationManager.StartConversation(conversations[timesHit]);
+        dialogueBeginEvent.dialogueToBegin = conversations[timesHit];
+        dialogueBeginEvent.Raise();
+        //conversationManager.StartConversation(conversations[timesHit]);
 
         timesHit++;
     }

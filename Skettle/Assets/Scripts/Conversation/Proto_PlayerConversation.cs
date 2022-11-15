@@ -5,7 +5,7 @@ using UnityEngine;
 public class Proto_PlayerConversation : MonoBehaviour
 {
 
-    [SerializeField] ConversationStarter starter;
+    [SerializeField] BasicConversationStarter starter;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +21,7 @@ public class Proto_PlayerConversation : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        var check = collision.gameObject.GetComponent<ConversationStarter>();
+        var check = collision.gameObject.GetComponent<BasicConversationStarter>();
 
         if (check != null)
         {
@@ -31,7 +31,7 @@ public class Proto_PlayerConversation : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        var check = collision.gameObject.GetComponent<ConversationStarter>();
+        var check = collision.gameObject.GetComponent<BasicConversationStarter>();
 
         if (check == starter)
             starter = null;

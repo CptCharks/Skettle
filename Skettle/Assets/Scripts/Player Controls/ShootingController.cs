@@ -20,7 +20,7 @@ public class ShootingController : GameplayComponent
     {
         mouseDirection = new Vector3();
 
-        SetActiveGun(shootingEnabled);
+        SetGunEnabled(shootingEnabled);
 
         GetGunSprite();
     }
@@ -81,7 +81,7 @@ public class ShootingController : GameplayComponent
 
     }
 
-    public void SetActiveGun(bool enable)
+    public void SetGunEnabled(bool enable)
     {
         shootingEnabled = enable;
 

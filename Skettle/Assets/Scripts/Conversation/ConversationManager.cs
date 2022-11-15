@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ConversationManager : MonoBehaviour
+public class ConversationManager : MonoBehaviour, IGameEventListener
 {
     public bool isInConversation;
     bool waitingForInput;
@@ -14,18 +14,31 @@ public class ConversationManager : MonoBehaviour
 
     Conversation currentConv;
 
-    ConversationStarter conv_Starter;
+    BasicConversationStarter conv_Starter;
     GameManager game_Manager;
     ConversationUI conv_UI;
 
     public UnityEvent conversationEnded = new UnityEvent();
     public UnityEvent conversationStarted = new UnityEvent();
-	
+
+    public DialogueBeginEvent dialogueBeginEvent;
+
     // Start is called before the first frame update
     void Awake()
     {
         game_Manager = FindObjectOfType<GameManager>();
         conv_UI = FindObjectOfType<ConversationUI>();
+    }
+
+    public void OnEnable()
+    {
+        dialogueBeginEvent = (DialogueBeginEvent)Resources.Load("GameEvents/DialogueBeginEvent", typeof(DialogueBeginEvent));
+        dialogueBeginEvent.Register(this);
+    }
+
+    public void OnDisable()
+    {
+        dialogueBeginEvent.Deregister(this);
     }
 
     public void InputSkipConversation()
@@ -69,7 +82,7 @@ public class ConversationManager : MonoBehaviour
         ui_isProcessing = false;
     }
 
-    public void StartCutsceneConversation(ConversationStarter starter)
+    public void StartCutsceneConversation(BasicConversationStarter starter)
     {
 	if (isInConversation)
         {
@@ -93,7 +106,16 @@ public class ConversationManager : MonoBehaviour
 
     }
 
-    public void StartConversation(ConversationStarter starter)
+    public void OnGameEventRaised(GameEvent passedEvent)
+    {
+        if(passedEvent == dialogueBeginEvent)
+        {
+            DialogueBeginEvent dbe = (DialogueBeginEvent)passedEvent;
+            StartConversation(dbe.dialogueToBegin);
+        }
+    }
+
+    public void StartConversation(BasicConversationStarter starter)
     {
         if (isInConversation)
         {
@@ -133,6 +155,11 @@ public class ConversationManager : MonoBehaviour
 
         isInConversation = true;
         StartCoroutine(ConversationLoop());
+    }
+
+    public void StartSmallConversation()
+    {
+
     }
 
     public void EndConversation()
@@ -189,4 +216,10 @@ public class ConversationManager : MonoBehaviour
 
         EndConversation();
     }
+
+    public void PlayerSelectedPrompt(string prompt_ID)
+    {
+        //Raise an event for the prompt_ID
+    }
+
 }

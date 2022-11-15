@@ -36,10 +36,6 @@ public class EnemyNavMeshLogic : MonoBehaviour
         }
 
         
-
-
-        agent.SetDestination(pos);
-        
     }
 
     public Vector3 SetPosition(Vector3 position)
@@ -48,6 +44,8 @@ public class EnemyNavMeshLogic : MonoBehaviour
 
         pos = position;
         newPos = position;
+
+        agent.SetDestination(pos);
 
         return newPos;
     }

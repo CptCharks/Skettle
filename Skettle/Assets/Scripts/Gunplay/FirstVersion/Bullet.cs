@@ -57,12 +57,12 @@ public class Bullet : MonoBehaviour//GameplayComponent
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Passed over something");
+        //Debug.Log("Passed over something");
 
         Hittable hit = other.GetComponent<Hittable>();
         if((hit != null) && (hit.ba_colliderAlligence != alligence))
         {
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
             hit.Hit(damage);
             Destroy(gameObject);
         }

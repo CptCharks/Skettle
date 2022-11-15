@@ -1,0 +1,552 @@
+fileFormatVersion: 2
+guid: 6f39d7693f1afe3478f1d2d962bf50a3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8920997214514356859
+    second: JimmySingsGangstersParadise_0
+  - first:
+      213: -7900483328371472775
+    second: JimmySingsGangstersParadise_1
+  - first:
+      213: 6954264779222736537
+    second: JimmySingsGangstersParadise_2
+  - first:
+      213: 2713328424159257271
+    second: JimmySingsGangstersParadise_3
+  - first:
+      213: -3473177539351918897
+    second: JimmySingsGangstersParadise_4
+  - first:
+      213: -8711922815776241823
+    second: JimmySingsGangstersParadise_5
+  - first:
+      213: -2278096709372124890
+    second: JimmySingsGangstersParadise_6
+  - first:
+      213: 3647235077066582241
+    second: JimmySingsGangstersParadise_7
+  - first:
+      213: 3072492858930846325
+    second: JimmySingsGangstersParadise_8
+  - first:
+      213: -5338560144774857792
+    second: JimmySingsGangstersParadise_9
+  - first:
+      213: 2078217404439914061
+    second: JimmySingsGangstersParadise_10
+  - first:
+      213: -8275968960915219578
+    second: JimmySingsGangstersParadise_11
+  - first:
+      213: -9136302751395122140
+    second: JimmySingsGangstersParadise_12
+  - first:
+      213: 2770251830137855846
+    second: JimmySingsGangstersParadise_13
+  - first:
+      213: 1551107151960806089
+    second: JimmySingsGangstersParadise_14
+  - first:
+      213: -9208770523066209305
+    second: JimmySingsGangstersParadise_15
+  - first:
+      213: -9101663556129679629
+    second: JimmySingsGangstersParadise_16
+  - first:
+      213: 3860714328139184128
+    second: JimmySingsGangstersParadise_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_0
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 741
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d5f928c40423480800000000000000
+      internalID: -8920997214514356859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_1
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 581
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 976c58a7548db5290800000000000000
+      internalID: -7900483328371472775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_2
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 581
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ed49fa8f2828060800000000000000
+      internalID: 6954264779222736537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 581
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2abf073dda7a520800000000000000
+      internalID: 2713328424159257271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_4
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 522
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6401dfd6bcccfc0800000000000000
+      internalID: -3473177539351918897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 461
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16749075b58091780800000000000000
+      internalID: -8711922815776241823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 461
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62163e9dc139260e0800000000000000
+      internalID: -2278096709372124890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_7
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 461
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e8e5ec8af49d9230800000000000000
+      internalID: 3647235077066582241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 461
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a5f77f9ffa3aa20800000000000000
+      internalID: 3072492858930846325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_9
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 461
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbf2ae45df99e5b0800000000000000
+      internalID: -5338560144774857792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_10
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 401
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46ecade7bf47dc10800000000000000
+      internalID: 2078217404439914061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_11
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 401
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b5d78f31ad52d80800000000000000
+      internalID: -8275968960915219578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_12
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 401
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4247ba6cd05553180800000000000000
+      internalID: -9136302751395122140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_13
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 401
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f1eb1bc59e17620800000000000000
+      internalID: 2770251830137855846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_14
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 401
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c211319cb3a68510800000000000000
+      internalID: 1551107151960806089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_15
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 342
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ebec8adfffd33080800000000000000
+      internalID: -9208770523066209305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_16
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 342
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f695c7e73560b180800000000000000
+      internalID: -9101663556129679629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JimmySingsGangstersParadise_17
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 342
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0083ffbf933049530800000000000000
+      internalID: 3860714328139184128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

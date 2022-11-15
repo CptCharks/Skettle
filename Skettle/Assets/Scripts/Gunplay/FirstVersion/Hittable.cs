@@ -13,9 +13,16 @@ public class Hittable : MonoBehaviour
 
     public float tempHit = 3f;
 
+    float startingHealth;
+
     public UnityEvent onHit;
     public UnityEvent onBreak;
     public UnityEvent onDamaged;
+
+    private void Start()
+    {
+        startingHealth = tempHit;
+    }
 
     public void Hit()
     {
@@ -77,4 +84,13 @@ public class Hittable : MonoBehaviour
         b_indestructable = false;
     }
 
+    public void ResetHealth()
+    {
+        tempHit = startingHealth;
+    }
+
+    public void ChangeStartingHealth(float newHealth)
+    {
+        startingHealth = newHealth;
+    }
 }

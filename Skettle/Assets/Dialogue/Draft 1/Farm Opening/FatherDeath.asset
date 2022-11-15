@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FatherDeath
   m_EditorClassIdentifier: 
   sections:
-  - phrase: 
+  - phrase: '*Gunshot*'
     currentChatter: 
     leftCharacterImage: {fileID: 0}
     rightCharacterImage: {fileID: 0}
@@ -30,8 +30,27 @@ MonoBehaviour:
     trigger:
       m_PersistentCalls:
         m_Calls: []
-  - phrase: 
-    currentChatter: 
+    sectionIsPrompt: 0
+  - phrase: DAD!
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+  - phrase: I think I heard someone. Hurry and clear out the farm!
+    currentChatter: Bandit
     leftCharacterImage: {fileID: 0}
     rightCharacterImage: {fileID: 0}
     leftCharacter: {fileID: 0}
@@ -43,24 +62,8 @@ MonoBehaviour:
       emotion: 
       sprite: {fileID: 0}
     isLeftTalking: 0
-    isRightTalking: 0
+    isRightTalking: 1
     trigger:
       m_PersistentCalls:
         m_Calls: []
-  - phrase: 
-    currentChatter: 
-    leftCharacterImage: {fileID: 0}
-    rightCharacterImage: {fileID: 0}
-    leftCharacter: {fileID: 0}
-    leftEmote:
-      emotion: 
-      sprite: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    rightEmote:
-      emotion: 
-      sprite: {fileID: 0}
-    isLeftTalking: 0
-    isRightTalking: 0
-    trigger:
-      m_PersistentCalls:
-        m_Calls: []
+    sectionIsPrompt: 0

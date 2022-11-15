@@ -81,6 +81,7 @@ public class PlayerGunManager : GameplayComponent
 
     public void Update()
     {
-        ammoCounter.text = shootController.gun_gun.currentAmmo.ToString("00") + "/" + ((shootController.gun_gun.extraAmmo == -999) ? "\u221E" : shootController.gun_gun.extraAmmo.ToString("00"));
+        if(ammoCounter != null)
+            ammoCounter.text = shootController.gun_gun.currentAmmo.ToString("00") + "/" + ((shootController.gun_gun.extraAmmo == -999) ? "\u221E" : shootController.gun_gun.extraAmmo.ToString("00"));
     }
 }

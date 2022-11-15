@@ -43,10 +43,16 @@ public class EnemyLogic : GameplayComponent
 
         //navMesh.UpdateSpeed(speed);
 
+        
+    }
+
+    public void Start()
+    {
         startMillPos = navMesh.SetPosition(transform.position);
 
         desiredDistanceToPlayer += Random.Range(-1f, 1f);
     }
+
 
     public override void GameplayUpdate()
     {
