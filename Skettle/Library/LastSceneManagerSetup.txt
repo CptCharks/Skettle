@@ -1,21 +1,9 @@
 sceneSetups:
 - path: Assets/Scenes/DraftLevels/Draft 2/PlayerScene2.unity
   isLoaded: 1
-  isActive: 1
-  isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/MainMenu.unity
-  isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/HomeFarm.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/MountainPass.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/TownCrossroads.unity
+- path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/LumberMill/LumberMill_D2.unity
   isLoaded: 1
-  isActive: 0
+  isActive: 1
   isSubScene: 0
