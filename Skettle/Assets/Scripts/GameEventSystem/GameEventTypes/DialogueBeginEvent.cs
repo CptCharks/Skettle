@@ -6,4 +6,5 @@ using UnityEngine;
 public class DialogueBeginEvent : GameEvent
 {
     public Conversation dialogueToBegin;
+    public ConversationInteractable convInteractable;
 }

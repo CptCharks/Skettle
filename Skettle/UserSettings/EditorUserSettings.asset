@@ -6,34 +6,34 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
-      value: 22424703114646680e0b0227036c6c1313191d072d262737283b5326ece92021
-      flags: 0
-    RecentlyUsedScenePath-1:
       value: 22424703114646680e0b0227036c6c1819180c23222f66022c271a36acf53a31f6fe
       flags: 0
-    RecentlyUsedScenePath-2:
+    RecentlyUsedScenePath-1:
       value: 22424703114646680e0b0227036c68111a1b2c2f3f3c1c3f232c5326ece92021
       flags: 0
-    RecentlyUsedScenePath-3:
+    RecentlyUsedScenePath-2:
       value: 22424703114646680e0b0227036c7e3926160c222a21283424271a07e7f32077c3ce06e8f33239353706e632030a042ce6441c05ff1f13
       flags: 0
-    RecentlyUsedScenePath-4:
+    RecentlyUsedScenePath-3:
       value: 22424703114646680e0b0227036c72111f19352f223d68252320092a
       flags: 0
-    RecentlyUsedScenePath-5:
-      value: 22424703114646680e0b0227036c7b0217110c06293e233c3e663921e3e62078b0a81be8ee3412393717a1290a371526
-      flags: 0
-    RecentlyUsedScenePath-6:
+    RecentlyUsedScenePath-4:
       value: 22424703114646680e0b0227036c711501572b292926237e38271427fb
       flags: 0
-    RecentlyUsedScenePath-7:
+    RecentlyUsedScenePath-5:
       value: 22424703114646680e0b0227036c7d1c171913192f2d2835633c133af6f9
       flags: 0
-    RecentlyUsedScenePath-8:
+    RecentlyUsedScenePath-6:
       value: 22424703114646680e0b0227036c7b0217110c06293e233c3e663921e3e62078b0a805fde828260f3a07e13917712930ff0f2f0ae406441e1f07e917
       flags: 0
-    RecentlyUsedScenePath-9:
+    RecentlyUsedScenePath-7:
       value: 22424703114646680e0b0227036c7b0217110c06293e233c3e663921e3e62078b0a806e5e6233a2e0a01ea32016c4f2afc031d12
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 22424703114646680e0b0227036c7b0217110c06293e233c3e663921e3e62078b0a81be8ee3412393717a1290a371526
+      flags: 0
+    RecentlyUsedScenePath-9:
+      value: 22424703114646680e0b0227036c7b0217110c06293e233c3e663921e3e62078b0a802e6f03470083615e1150a2a042dfb051b18b93f051c1f26fc021db1051d18d101
       flags: 0
     lightmappingDeviceAndPlatform:
       value: 53

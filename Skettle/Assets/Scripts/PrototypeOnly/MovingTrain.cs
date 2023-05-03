@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MovingTrain : GameplayComponent
 {
@@ -14,7 +15,10 @@ public class MovingTrain : GameplayComponent
 	
 	[SerializeField] bool repeatAutomatically;
 	bool isMoving = false;
-	
+    [SerializeField] bool pingPong = false;
+    public bool reversing = false;
+
+    public UnityEvent onReachEnd = new UnityEvent();
 	void Awake()
 	{
 		transform.SetPositionAndRotation(startLocation.position, transform.rotation);
@@ -24,17 +28,51 @@ public class MovingTrain : GameplayComponent
     {
 		if(chooChooing)
 		{
-			isMoving = true;
-			
-			Vector3 remainingDistance = (endLocation.position - transform.position);
-			
-			transform.position += (remainingDistance.normalized*speed*Time.deltaTime);
-			
-			if(remainingDistance.magnitude <= 0.5f)
-			{
-				chooChooing = false;
-				isMoving = false;
-			}
+            if (!reversing)
+            {
+                isMoving = true;
+
+                Vector3 remainingDistance = (endLocation.position - transform.position);
+
+                transform.position += (remainingDistance.normalized * speed * Time.deltaTime);
+
+                if (remainingDistance.magnitude <= 0.5f)
+                {
+                    if (!pingPong)
+                    {
+                        isMoving = false;
+                        chooChooing = false;
+                        onReachEnd.Invoke();
+                    }
+                    else
+                    {
+                        reversing = true;
+                    }
+                }
+
+            }
+            else
+            {
+                isMoving = true;
+
+                Vector3 remainingDistance = (startLocation.position - transform.position);
+
+                transform.position += (remainingDistance.normalized * speed * Time.deltaTime);
+
+                if (remainingDistance.magnitude <= 0.5f)
+                {
+                    if (!pingPong)
+                    {
+                        isMoving = false;
+                        chooChooing = false;
+                        onReachEnd.Invoke();
+                    }
+                    else
+                    {
+                        reversing = false;
+                    }
+                }
+            }
 		}
 		
 		if(!chooChooing && repeatAutomatically)
@@ -54,6 +92,7 @@ public class MovingTrain : GameplayComponent
 		chooChooing = true;
 	}
 	
+    /*
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if(!isMoving)
@@ -75,4 +114,5 @@ public class MovingTrain : GameplayComponent
 				hitController.onBreak.Invoke();
 		}
 	}
+    */
 }

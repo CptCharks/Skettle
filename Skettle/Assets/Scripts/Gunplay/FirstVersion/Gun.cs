@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class Gun : MonoBehaviour
 {
     public Transform barrelPoint;
@@ -24,6 +25,23 @@ public abstract class Gun : MonoBehaviour
     //public Ammo ammoTypeAndAmmount;
     public float f_distanceTillDestroy;
 
+    public AudioSource audioSource;
+    public AudioClip gunSoundEffect;
+    public Animator muzzleFlash;
+
+    protected float audioVariance = 0.1f;
+    private float audioBasePitch;
+
+    public virtual void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource != null)
+        {
+            audioBasePitch = audioSource.pitch;
+        }
+    }
+
     public abstract void Reload();
 
     public abstract void Fire();
@@ -35,8 +53,34 @@ public abstract class Gun : MonoBehaviour
             extraAmmo += amount;
             if(extraAmmo > maxExtraAmmo)
             {
+                int difference = extraAmmo - maxExtraAmmo;
                 extraAmmo = maxExtraAmmo;
+                currentAmmo += difference;
+                if(currentAmmo > gunMaxChamber)
+                {
+                    currentAmmo = gunMaxChamber;
+                }
             }
+        }
+    }
+
+    public virtual void SetAmmo(int backup, int current)
+    {
+        extraAmmo = backup;
+        currentAmmo = current;
+    }
+
+    public virtual void PlayGunshot()
+    {
+        var newPitch = audioBasePitch + Random.Range(-audioVariance, audioVariance);
+
+        if(muzzleFlash != null)
+            muzzleFlash?.SetTrigger("Fire");
+
+        if (gunSoundEffect != null && audioSource != null)
+        {
+            audioSource.pitch = newPitch;
+            AudioFunctions.PlayClipAtPoint(gunSoundEffect, transform.position, audioSource.pitch, audioSource.volume, audioSource.outputAudioMixerGroup);
         }
     }
 }

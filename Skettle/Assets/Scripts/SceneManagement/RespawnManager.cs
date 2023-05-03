@@ -33,12 +33,12 @@ public class RespawnManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
-        if(demoEndManager == null)
+        /*if(demoEndManager == null)
         {
             demoEndManager = FindObjectOfType<DemoEnd>();
         }
 
-        demoEndManager.AddDeath();
+        demoEndManager.AddDeath();*/
 
         if(currentRespawnPoint == null)
         {

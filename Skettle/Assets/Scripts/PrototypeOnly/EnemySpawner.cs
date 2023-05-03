@@ -18,6 +18,6 @@ public class EnemySpawner : MonoBehaviour
     {
         var enemy = Instantiate(enemyToSpawn);
         enemy.transform.SetPositionAndRotation(transform.position, enemy.transform.rotation);
-        enemy.GetComponent<EnemyLogic>().EnableEnemy(true);
+        enemy.GetComponent<EnemyLogic_Generic>().EnableEnemy(true);
     }
 }

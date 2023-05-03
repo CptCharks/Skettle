@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3401771649536014984, guid: 0254f623c7363894badd5fc2db20949d, type: 3}
+      propertyPath: explosionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6179dc33f54ded648a9a1b2d57ce33a4, type: 3}
+    - target: {fileID: 3401771649536014984, guid: 0254f623c7363894badd5fc2db20949d, type: 3}
+      propertyPath: explosionMixer
+      value: 
+      objectReference: {fileID: -7603128441622973635, guid: 82036ca9e74a124409bac89871bfb54f, type: 2}
     - target: {fileID: 3401771649536014985, guid: 0254f623c7363894badd5fc2db20949d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -65,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401771649536014987, guid: 0254f623c7363894badd5fc2db20949d, type: 3}
       propertyPath: m_Name
-      value: Enemy Explosion NewSprite
+      value: Large Explosion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0254f623c7363894badd5fc2db20949d, type: 3}

@@ -1,9 +1,57 @@
 sceneSetups:
 - path: Assets/Scenes/DraftLevels/Draft 2/PlayerScene2.unity
   isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/MainMenu.unity
+  isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/LumberMill/LumberMill_D2.unity
+- path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/TrainStation/TrainStation.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/HomeFarm.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/MountainPass.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/TownCrossroads.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/TownBetweenLevels.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/HotelOffice.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/BulletShop.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/TownMuseum.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownSquare.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/TownHall.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/HotelRoom.unity
   isLoaded: 1
-  isActive: 1
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/FirstFarm/FirstFarm_D2.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0

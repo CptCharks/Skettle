@@ -10,10 +10,9 @@ public class PistolWithEffects : Gun
     [SerializeField] ShakeEffect shake;
     [SerializeField] GunSparkEffects sparks;
 
-    
-
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         //Give player some ammo to start
         currentAmmo = gunMaxChamber;
         f_nextTime = f_betweenShots;
@@ -33,6 +32,8 @@ public class PistolWithEffects : Gun
             currentAmmo -= 1;
 
             f_nextTime = f_betweenShots;
+
+            PlayGunshot();
         }
         else if (!b_isReloading && currentAmmo <= 0)
         {

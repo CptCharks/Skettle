@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
-public class HomeFarm_Specifics : MonoBehaviour
+public class HomeFarm_Specifics : SceneSpecificsBase
 {
-    // Start is called before the first frame update
-    void Start()
+    CutsceneManager cutsceneManager;
+
+    public PlayableAsset introCutscene;
+
+    void Awake()
     {
-        
+        cutsceneManager = FindObjectOfType<CutsceneManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void SceneStart()
     {
-        
+        cutsceneManager.StartCutscene(introCutscene);
+    }
+
+    public override void SceneEnd()
+    {
+
     }
 }

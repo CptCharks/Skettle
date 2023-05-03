@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - LevelDoor
   - GameManager
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

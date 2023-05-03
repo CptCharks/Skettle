@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Animator))]
 public class Chest : Game_Interactable
 {
 	public enum ChestState
@@ -18,6 +20,15 @@ public class Chest : Game_Interactable
 	
 	public float force = 0.5f;
 
+    Animator anim;
+    AudioSource audioSource;
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public int GetState()
 	{
 		return (int)state;
@@ -27,6 +38,10 @@ public class Chest : Game_Interactable
     {
         if (state == ChestState.Closed)
         {
+            anim.SetTrigger("Open");
+            audioSource.Play();
+
+
             for (int i = 0; i < amountToDrop; i++)
             {
                 var money = Instantiate(itemToDrop, transform.position, transform.rotation, transform);

@@ -7,8 +7,9 @@ public class GenericPistol : Gun
     //Will probably leave the bullet prefab in the ammo type definitions
     public GameObject bullet_prefab_test;
 
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         //Give player some ammo to start
         currentAmmo = gunMaxChamber;
         f_nextTime = f_betweenShots;
@@ -25,6 +26,8 @@ public class GenericPistol : Gun
             currentAmmo -= 1;
 
             f_nextTime = f_betweenShots;
+
+            PlayGunshot();
         }
         else if(!b_isReloading && currentAmmo <= 0)
         {

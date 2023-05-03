@@ -20,28 +20,52 @@ public class PlayerGunManager : GameplayComponent
     public ShootingController shootController;
     public TextMeshProUGUI ammoCounter;
 
+    GameManager manager;
 
     void Awake()
     {
+        manager = GetComponent<GameManager>();
+
         totalGuns = avaliableGuns.Count;
         shootController = GetComponent<ShootingController>();
-
 
         shootController.gun_gun.gameObject.SetActive(false);
         shootController.gun_gun = avaliableGuns[currentGun_index].gun;
         shootController.obj_gun = shootController.gun_gun.gameObject;
         shootController.gun_gun.gameObject.SetActive(true);
+
+        shootController.SetGunEnabled(CheckForGun());
+
     }
 
     // Update is called once per frame
     public override void GameplayUpdate()
     {
+        if (!shootController.shootingEnabled)
+            return;
+
         if(Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             currentGun_index++;
-            if(currentGun_index > totalGuns - 1)
+            if (currentGun_index > totalGuns - 1)
             {
                 currentGun_index = 0;
+            }
+
+            int exitValue = 0;
+            while (!avaliableGuns[currentGun_index].avaliable)
+            {
+                if(exitValue > 5)
+                {
+                    shootController.SetGunEnabled(false);
+                    return;
+                }
+                exitValue++;
+                currentGun_index++;
+                if (currentGun_index > totalGuns - 1)
+                {
+                    currentGun_index = 0;
+                }
             }
 
             shootController.gun_gun.gameObject.SetActive(false);
@@ -55,6 +79,23 @@ public class PlayerGunManager : GameplayComponent
             if (currentGun_index < 0)
             {
                 currentGun_index = totalGuns - 1;
+            }
+
+            int exitValue = 0;
+            while (!avaliableGuns[currentGun_index].avaliable)
+            {
+                if (exitValue > 5)
+                {
+                    shootController.SetGunEnabled(false);
+                    return;
+                }
+                exitValue++;
+
+                currentGun_index--;
+                if (currentGun_index < 0)
+                {
+                    currentGun_index = totalGuns - 1;
+                }
             }
 
 
@@ -77,6 +118,46 @@ public class PlayerGunManager : GameplayComponent
                 return;
             }
         }
+    }
+
+    public void LoadPlayerSavedAmmo(int[] gunAmmoAmountsExtra, int[] gunAmmoAmountsInGun)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            avaliableGuns[i].gun.SetAmmo(gunAmmoAmountsExtra[i], gunAmmoAmountsInGun[i]);
+        }
+    }
+
+    public void LoadPlayerSavedGuns(bool[] gunOwnership)
+    {
+        bool hasOneGun = false;
+
+        for(int i = 0; i < 5; i++)
+        {
+            var gunAvailability = avaliableGuns[i];
+            gunAvailability.avaliable = gunOwnership[i];
+            avaliableGuns[i] = gunAvailability;
+            if(gunOwnership[i])
+            {
+                hasOneGun = true;
+            }
+        }
+
+        shootController.SetGunEnabled(hasOneGun);
+    }
+
+    private bool CheckForGun()
+    {
+        bool check = false;
+        for (int i = 0; i < 5; i++)
+        {
+            if(avaliableGuns[i].avaliable)
+            {
+                check = true;
+            }
+        }
+
+        return check;
     }
 
     public void Update()

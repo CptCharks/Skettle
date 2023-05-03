@@ -12,9 +12,13 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
     //Simple check if the skip button was pressed
     bool skipActive;
 
+    //Simple check if there is a prompt the player needs to answer.
+    bool promptActive = false;
+
     Conversation currentConv;
 
-    BasicConversationStarter conv_Starter;
+    public ConversationInteractable conv_target;
+
     GameManager game_Manager;
     ConversationUI conv_UI;
 
@@ -82,7 +86,18 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
         ui_isProcessing = false;
     }
 
-    public void StartCutsceneConversation(BasicConversationStarter starter)
+    public void PromptReturnSignal(int promptNumber, string promptID)
+    {
+        Debug.Log("Prompt selected: " + promptNumber + " : " + promptID);
+
+        conv_target?.ReceivePrompt(promptNumber, promptID);
+        promptActive = false;
+
+        //No idea if I want to use skipActive or isInConversation to just bail and start a new conversation.
+        skipActive = true;
+    }
+
+    public void StartCutsceneConversation(ConversationInteractable starter)
     {
 	if (isInConversation)
         {
@@ -90,8 +105,8 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
             return;
         }
 
-        conv_Starter = starter;
-        currentConv = conv_Starter.toLoad;
+        conv_target = starter;
+        currentConv = conv_target.toLoad;
 
         game_Manager.SetGameplayEnabled(false);
         //Leaving this out cause seems to not get the game_manager inside the full build atm
@@ -111,11 +126,12 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
         if(passedEvent == dialogueBeginEvent)
         {
             DialogueBeginEvent dbe = (DialogueBeginEvent)passedEvent;
+            conv_target = dbe.convInteractable;
             StartConversation(dbe.dialogueToBegin);
         }
     }
 
-    public void StartConversation(BasicConversationStarter starter)
+    public void StartConversation(ConversationInteractable starter)
     {
         if (isInConversation)
         {
@@ -123,8 +139,8 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
             return;
         }
 
-        conv_Starter = starter;
-        currentConv = conv_Starter.toLoad;
+        conv_target = starter;
+        currentConv = conv_target.toLoad;
 
         game_Manager.SetGameplayEnabled(false);
         //Leaving this out cause seems to not get the game_manager inside the full build atm
@@ -144,7 +160,6 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
             return;
         }
 
-        conv_Starter = null;
         currentConv = conversation;
 
         game_Manager.SetGameplayEnabled(false);
@@ -166,8 +181,8 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
     {
 	    conversationEnded.Invoke();
 
-        if (conv_Starter != null)
-            conv_Starter.EndConversation();
+        if (conv_target != null)
+            conv_target.EndConversation();
         
         if(conv_UI != null)
             conv_UI.EndConversation();
@@ -185,11 +200,15 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
         //Setup visuals
         conv_UI.SetupConversation(currentSection);
 
+        //TODO: Add check here for prompts
+        if (currentSection.sectionIsPrompt)
+            promptActive = true;
+
         //Process text
         while (isInConversation)
         {
             //Potentially add an emergency exit to this loop from outside
-            if(skipActive)
+            if(skipActive && !promptActive)
             {
                 skipActive = false;
                 cnt++;
@@ -215,11 +234,6 @@ public class ConversationManager : MonoBehaviour, IGameEventListener
         isInConversation = false;
 
         EndConversation();
-    }
-
-    public void PlayerSelectedPrompt(string prompt_ID)
-    {
-        //Raise an event for the prompt_ID
     }
 
 }

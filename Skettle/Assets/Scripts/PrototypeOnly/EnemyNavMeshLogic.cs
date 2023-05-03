@@ -56,4 +56,9 @@ public class EnemyNavMeshLogic : MonoBehaviour
         agent.speed = speed;
     }
 
+    public void Halt()
+    {
+        agent.SetDestination(transform.position);
+    }
+
 }

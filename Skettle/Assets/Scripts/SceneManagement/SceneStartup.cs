@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SceneStartup : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SceneStartup : MonoBehaviour
 
     //Scene objects
     public SceneStartPoint[] sceneStartPoints;
+    public List<I_ProgressConditional> progressConditionals;
     public PlayerController player;
 
     //Add other details here for sceneStartup
@@ -16,17 +18,31 @@ public class SceneStartup : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         sceneStartPoints = FindObjectsOfType<SceneStartPoint>();
+
+        progressConditionals = new List<I_ProgressConditional>();
+        var pc = FindObjectsOfType<MonoBehaviour>().OfType<I_ProgressConditional>();
+        foreach(I_ProgressConditional ipc in pc)
+        {
+            progressConditionals.Add(ipc);
+        }
     }
 
-    public void OnSceneStart(SceneStartID targetPoint)
+    public void OnSceneStart(SceneStartID targetPoint, GameManager gm = null)
     {
-        StartCoroutine(SceneStartRoutine(targetPoint));
+        StartCoroutine(SceneStartRoutine(targetPoint, gm));
 
         FindObjectOfType<SceneSpecificsBase>()?.SceneStart();
     }
 
-    IEnumerator SceneStartRoutine(SceneStartID targetPoint)
+    IEnumerator SceneStartRoutine(SceneStartID targetPoint, GameManager gm = null)
     {
+        if (gm != null)
+        {
+            foreach (I_ProgressConditional ipc in progressConditionals)
+            {
+                ipc.ShowOrHide(gm.progressContainer);
+            }
+        }
 
         foreach (SceneStartPoint ssp in sceneStartPoints)
         {

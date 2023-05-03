@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8667bad1abc0447a059dae1a9d1a48, type: 3}
   m_Name: MountainPass_HomeFarm
   m_EditorClassIdentifier: 
-  sceneName: 
-  startID: 
+  sceneName: MountainPass
+  startID: MountainPass_HomeFarm

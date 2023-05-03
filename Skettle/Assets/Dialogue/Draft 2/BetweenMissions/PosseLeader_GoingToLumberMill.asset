@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a06d17beb6b55145b51dd293b2ac545, type: 3}
+  m_Name: PosseLeader_GoingToLumberMill
+  m_EditorClassIdentifier: 
+  sections:
+  - phrase: Morning Skettle! You did good yesterday.
+    currentChatter: Posse Leader
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Also sorry you had to take on Big Grant the outlaw. I didn't know he
+      was working with these bandits. If I had known, I would have gotten some more
+      folks to help you.
+    currentChatter: Posse Leader
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: It's okay, I managed. I'll still ride with you till I get justice for
+      my parents.
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Anyhow, now that we've got some farmland back and food isn't as big a
+      concern, today we're going to take back the lumbermill. We're going to need
+      to make repairs and reinforce barriers.
+    currentChatter: Posse Leader
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Just come back and talk to me when you're ready to leave.
+    currentChatter: Posse Leader
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []

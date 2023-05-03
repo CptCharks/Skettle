@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a06d17beb6b55145b51dd293b2ac545, type: 3}
+  m_Name: FirstTalkWithMayor1
+  m_EditorClassIdentifier: 
+  sections:
+  - phrase: Mayor, mayor!
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: What's the matter Skettle? We're a little busy at the moment. We're getting
+      reports of bandits taking over assets all around the town.
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Oh no, don't tell me.
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: I know. That's why I came.
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Oh no, don't tell me...
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: They got your parents?
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: ... Yeah. I didn't even get to say goodbye.
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: I'm sorry. They were good folks. And uh... I'll let you be for now. Did
+      you bring any supplies? Tent or anything?
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: No, I barely made it out. They burnt down the farm.
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: That's okay. I think Macy almost has another room at the hotel ready
+      for those without tents. You can ask her to see when it's ready.
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: And one more thing, feel free to talk to folks around town. I know we've
+      all lost someone dear over the years. We're here for you.
+    currentChatter: Mayor
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Thank you.
+    currentChatter: Skettle
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 1
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []

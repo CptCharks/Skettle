@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: MissionOrder
   m_EditorClassIdentifier: 
   missions:
-  - sceneAsset: {fileID: 102900000, guid: e8ade3b4cea329048a6abf3cbf5c5410, type: 3}
-    missionStart: {fileID: 11400000, guid: d9dd1c49e8eb44c4c815dcedfe2e67d2, type: 2}
+  - missionStart: {fileID: 11400000, guid: d9dd1c49e8eb44c4c815dcedfe2e67d2, type: 2}
     order: 0
+  - missionStart: {fileID: 11400000, guid: 71622570458355f4fbf726265a05fcf2, type: 2}
+    order: 1
+  - missionStart: {fileID: 11400000, guid: 95d66f9c16997614e84839d4ccd19953, type: 2}
+    order: 2

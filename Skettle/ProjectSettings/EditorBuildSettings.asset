@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/HomeFarm.unity
     guid: 3677f2e945c469648bf5f8c8c3c76c4c
   - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/MountainPass.unity
+    guid: c8baa7d43c3bd8d49b89f74831b18431
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/StoryScenes/TownCrossroads.unity
+    guid: 5021198d182d0f749ac4bf2e6e714dd1
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownSquare.unity
+    guid: fe2768b209926324fa05bb4fc32a7090
+  - enabled: 1
     path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/BulletShop.unity
     guid: 1ad99ddf7233cb647895940a0e579251
   - enabled: 1
@@ -24,6 +33,18 @@ EditorBuildSettings:
     path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/HotelOffice.unity
     guid: 1f3471974c31ab3458f3b539669cdab0
   - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/HotelRoom.unity
+    guid: 234edfc07b87357438f4ea1dcc7add65
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/Town/TownInteriors/TownHall.unity
+    guid: 588fb8b8eb5b3124ca262584c1b38b2d
+  - enabled: 1
     path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/FirstFarm/FirstFarm_D2.unity
     guid: e8ade3b4cea329048a6abf3cbf5c5410
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/LumberMill/LumberMill_D2.unity
+    guid: 97377e791686a5f4490124e468f835a7
+  - enabled: 1
+    path: Assets/Scenes/DraftLevels/Draft 2/CombatLevels/TrainStation/TrainStation.unity
+    guid: ea049d3a65174084195bea35bffe00b2
   m_configObjects: {}

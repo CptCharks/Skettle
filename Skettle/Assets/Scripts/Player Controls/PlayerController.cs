@@ -35,6 +35,7 @@ public class PlayerController : GameplayComponent
     [SerializeField] private bool b_isHit;
     [SerializeField] private bool b_isCrouched;
     [SerializeField] private bool b_isStunned;
+    [SerializeField] private bool b_isKnockedBack;
     [SerializeField] private bool b_isAlive;
 
     [SerializeField] public bool b_controlsDisabled;
@@ -89,6 +90,12 @@ public class PlayerController : GameplayComponent
 
         v3_playerDirection = new Vector3(1, 0, 0);
         v3_controlDirection = new Vector3(0, 0, 0);
+    }
+
+    public void EnableDisableControls(bool enabled)
+    {
+        b_controlsDisabled = !enabled;
+        shootingController.shootingEnabled = enabled;
     }
 
     public void UpdateAttributes()
@@ -199,6 +206,9 @@ public class PlayerController : GameplayComponent
         if (b_isStunned)
             return;
 
+        if (b_isKnockedBack)
+            return;
+
         if (b_isRolling)
         {
             timeSinceLastRoll = 0;
@@ -256,6 +266,24 @@ public class PlayerController : GameplayComponent
         }
     }
 
+    public void OnStun(float stunLength, bool disrupting, float distance, float knockbackSpeed, Vector3 incomingDirection)
+    {
+        //Change the way knockback works. Change the b_isHit boolon line 318
+        b_isKnockedBack = disrupting;
+        if (b_isKnockedBack)
+        {
+            StartCoroutine(KnockBackprocess(distance, knockbackSpeed, incomingDirection));
+        }
+
+        if (!b_isHit || !b_isStunned)
+        {
+            b_isStunned = true;
+            StartCoroutine(StunProcess(stunLength));
+
+            
+        }
+    }
+
     public void StartInvul(float time)
     {
         StartCoroutine(FlashPlayer(time));
@@ -290,6 +318,7 @@ public class PlayerController : GameplayComponent
         playerSprite.color = startColor;
     }
 
+    //Look to add option for knockback speed
     IEnumerator KnockBackprocess(float force, Vector3 incomingDir)
     {
         Vector3 startingPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -297,14 +326,37 @@ public class PlayerController : GameplayComponent
         //Timer to allow a player out of a stun. 2 second max
         float knockbackTimer = 0f;
 
-        while(b_isHit)
+        while(b_isKnockedBack)
         {
 
-            transform.position += v3_playerDirection * force * Time.deltaTime;
+            transform.position += incomingDir.normalized * force * Time.deltaTime;
 
             if (((startingPos - transform.position).magnitude >= force * 5f) || (knockbackTimer >= 2f))
             {
-                b_isRolling = false;
+                b_isKnockedBack = false;
+            }
+
+            knockbackTimer += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator KnockBackprocess(float distance, float speed, Vector3 incomingDir)
+    {
+        Vector3 startingPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        //Timer to allow a player out of a stun. 2 second max
+        float knockbackTimer = 0f;
+
+        while (b_isKnockedBack)
+        {
+
+            transform.position += incomingDir.normalized * distance * speed * Time.deltaTime;
+
+            if (((startingPos - transform.position).magnitude >= distance) || (knockbackTimer >= 2f))
+            {
+                b_isKnockedBack = false;
             }
 
             knockbackTimer += Time.deltaTime;

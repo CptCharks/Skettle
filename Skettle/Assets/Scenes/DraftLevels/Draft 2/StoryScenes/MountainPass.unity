@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &215389623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215389625}
+  - component: {fileID: 215389624}
+  m_Layer: 0
+  m_Name: SceneSpecifics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &215389624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215389623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe73dbebb2bae8438e75885edd7bcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneStartPoints: []
+  player: {fileID: 0}
+--- !u!4 &215389625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215389623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -48.5447, y: -44.952816, z: -162.71533}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258964943
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +201,7 @@ MonoBehaviour:
   sceneStartID: {fileID: 11400000, guid: e40ffe84406379941853849855973926, type: 2}
   playerExitPoint: {fileID: 1515500975}
   linkedPoint: {fileID: 11400000, guid: 050e4cc25fae9a348828c55ba7a4514f, type: 2}
-  isEnabled: 0
+  isEnabled: 1
   alreadyTriggered: 1
   onUsedWhenDisabled:
     m_PersistentCalls:
@@ -8238,7 +8283,7 @@ MonoBehaviour:
   sceneStartID: {fileID: 11400000, guid: 49f5e67e09efc464381fa60dd23a2eb8, type: 2}
   playerExitPoint: {fileID: 783000187}
   linkedPoint: {fileID: 11400000, guid: 850b0751fc9c1394ba1c4e4807826909, type: 2}
-  isEnabled: 0
+  isEnabled: 1
   alreadyTriggered: 0
   onUsedWhenDisabled:
     m_PersistentCalls:

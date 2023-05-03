@@ -8,9 +8,16 @@ public class Explosion : MonoBehaviour
 
     public Bullet.BulletAlligence alligence;
 
+    [SerializeField] AudioClip explosionClip;
+    [SerializeField] UnityEngine.Audio.AudioMixerGroup explosionMixer;
+    [SerializeField] float explosionLoudness = 0.8f;
+    float audioVariance = 0.1f;
+
+
     void Start()
 	{
 		Destroy(gameObject, timeActive);
+        AudioFunctions.PlayClipAtPoint(explosionClip, transform.position, 1f + Random.Range(-audioVariance, audioVariance), explosionLoudness, explosionMixer);
 	}
 	
 	public void OnTriggerEnter2D(Collider2D other)

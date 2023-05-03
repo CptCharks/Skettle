@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunStoreFirst
   m_EditorClassIdentifier: 
   sections:
-  - phrase: Howdy partner! I got a wide range of guns available.
+  - phrase: Welcome back! Glad to see you in one piece.
     currentChatter: Hillary
     leftCharacterImage: {fileID: 0}
     rightCharacterImage: {fileID: 0}
@@ -30,20 +30,4 @@ MonoBehaviour:
     trigger:
       m_PersistentCalls:
         m_Calls: []
-  - phrase: Feel free to come by to stock up on arms and ammo!
-    currentChatter: Hillary
-    leftCharacterImage: {fileID: 0}
-    rightCharacterImage: {fileID: 0}
-    leftCharacter: {fileID: 0}
-    leftEmote:
-      emotion: 
-      sprite: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    rightEmote:
-      emotion: 
-      sprite: {fileID: 0}
-    isLeftTalking: 0
-    isRightTalking: 0
-    trigger:
-      m_PersistentCalls:
-        m_Calls: []
+    sectionIsPrompt: 0

@@ -180,6 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeActive: 1
+  alligence: 0
+  explosionClip: {fileID: 8300000, guid: 54d231ad9609a5849a4dec7df6a4c99d, type: 3}
+  explosionMixer: {fileID: -7603128441622973635, guid: 82036ca9e74a124409bac89871bfb54f, type: 2}
+  explosionLoudness: 0.5
 --- !u!58 &7495635154791409551
 CircleCollider2D:
   m_ObjectHideFlags: 0

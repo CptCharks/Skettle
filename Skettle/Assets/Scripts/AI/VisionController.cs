@@ -7,9 +7,12 @@ public class VisionController : MonoBehaviour
     [SerializeField] public GameObject go_player;
     [SerializeField] public float f_visionRange;
     [SerializeField] public bool b_canSeePlayer;
+    [SerializeField] public float f_distanceToPlayer;
 
     [SerializeField] LayerMask layermask_LM;
     [SerializeField] LayerMask layermask_WH;
+
+    [SerializeField] bool debugHitReg = false;
 
     //[SerializeReference] float f_testVisionRayRange = 7f;
 
@@ -18,12 +21,15 @@ public class VisionController : MonoBehaviour
     private void Awake()
     {
         go_player = GameObject.FindGameObjectWithTag("Player");
+        f_distanceToPlayer = 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((transform.position - go_player.transform.position).magnitude <= f_visionRange)
+        f_distanceToPlayer = (transform.position - go_player.transform.position).magnitude;
+
+        if (f_distanceToPlayer <= f_visionRange)
         {
             //Works well enough. Make sure we sort layers properly. Should only have one layer full of wall and player collisions
             /*Requirements:
@@ -46,6 +52,11 @@ public class VisionController : MonoBehaviour
                 else
                 {
                     b_canSeePlayer = false;
+
+                    if(debugHitReg)
+                    {
+                        Debug.Log(hit.transform.name);
+                    }
                 }
             }
 
@@ -69,10 +80,10 @@ public class VisionController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-	if(go_player != null)
-	{
-        Gizmos.DrawRay(transform.position, (go_player.transform.position - transform.position).normalized* f_visionRange);
-	}
+	    if(go_player != null)
+	    {
+            Gizmos.DrawRay(transform.position, (go_player.transform.position - transform.position).normalized* f_visionRange);
+	    }
     }
 
 }

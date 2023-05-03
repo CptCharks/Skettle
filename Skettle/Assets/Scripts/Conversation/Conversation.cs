@@ -30,11 +30,14 @@ public class Conversation : ScriptableObject
         //Basically using v for anything I might need to trigger animation wise
         public UnityEvent trigger;
 
+
+        //I think it would be better to have a prompt be a seperate type or at least make a call back instead of using the Prompt_ID method
         public bool sectionIsPrompt;
         public List<Prompt> prompts;
 
     }
 
+    [System.Serializable]
     public class Prompt
     {
         [TextArea]

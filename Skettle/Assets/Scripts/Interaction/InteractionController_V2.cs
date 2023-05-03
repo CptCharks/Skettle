@@ -15,7 +15,7 @@ public class InteractionController_V2 : GameplayComponent
 
     public override void GameplayUpdate()
     {
-        if(gameInteractable != null)
+        if(gameInteractable != null && gameInteractable.IsInteractable())
         {
             eKey.SetActive(true);
         }

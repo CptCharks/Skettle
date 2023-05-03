@@ -18,6 +18,7 @@ public class Hittable : MonoBehaviour
     public UnityEvent onHit;
     public UnityEvent onBreak;
     public UnityEvent onDamaged;
+    public UnityEvent onHealed;
 
     private void Start()
     {
@@ -82,6 +83,21 @@ public class Hittable : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         b_indestructable = false;
+    }
+
+
+    public void Heal()
+    {
+        tempHit++;
+
+        onHealed.Invoke();
+    }
+
+    public void Heal(int amount)
+    {
+        tempHit += amount;
+
+        onHealed.Invoke();
     }
 
     public void ResetHealth()

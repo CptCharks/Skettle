@@ -30,3 +30,5 @@ MonoBehaviour:
     trigger:
       m_PersistentCalls:
         m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []

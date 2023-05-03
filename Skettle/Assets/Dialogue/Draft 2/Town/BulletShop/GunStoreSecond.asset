@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunStoreSecond
   m_EditorClassIdentifier: 
   sections:
-  - phrase: No offense, but you look a little young for a gunslinger.
+  - phrase: What can I get for you?
     currentChatter: Hillary
     leftCharacterImage: {fileID: 0}
     rightCharacterImage: {fileID: 0}
@@ -30,3 +30,4 @@ MonoBehaviour:
     trigger:
       m_PersistentCalls:
         m_Calls: []
+    sectionIsPrompt: 0

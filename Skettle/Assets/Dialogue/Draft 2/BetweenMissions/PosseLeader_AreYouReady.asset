@@ -30,3 +30,28 @@ MonoBehaviour:
     trigger:
       m_PersistentCalls:
         m_Calls: []
+    sectionIsPrompt: 0
+    prompts: []
+  - phrase: Ready to go?
+    currentChatter: Posse Leader
+    leftCharacterImage: {fileID: 0}
+    rightCharacterImage: {fileID: 0}
+    leftCharacter: {fileID: 0}
+    leftEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    rightEmote:
+      emotion: 
+      sprite: {fileID: 0}
+    isLeftTalking: 0
+    isRightTalking: 0
+    trigger:
+      m_PersistentCalls:
+        m_Calls: []
+    sectionIsPrompt: 1
+    prompts:
+    - promptText: Yes
+      prompt_ID: Posse_Yes
+    - promptText: No
+      prompt_ID: Posse_No

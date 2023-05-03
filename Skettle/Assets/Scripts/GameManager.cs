@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool gamePaused
     {
-        get { return this.gamePaused; }
+        get { return this._GamePaused; }
         set { this.gamePaused = _GamePaused; }
     }
     private bool _GamePaused;
@@ -30,14 +30,28 @@ public class GameManager : MonoBehaviour
     List<GameplayComponent> removeList;
 
     public PlayerController player;
+    public GameObject playerInfo;
+    PlayerGunManager gunManager;
+
 
     public ProgressContainer progressContainer;
     public MissionOrderInfo missionOrderInfo;
 
+    int currentSaveFile = 0;
+
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject controlsMenu;
+    [SerializeField] GameObject optionsMenu;
+
+    bool optionMenuOpen = false;
+    bool controlsMenuOpen = false;
+    
 
     private void Start()
     {
         DontDestroyOnLoad(this);
+
+        pauseMenu.SetActive(false);
 
         progressContainer = GetComponent<ProgressContainer>();
 
@@ -49,15 +63,7 @@ public class GameManager : MonoBehaviour
 
         //Get player variables. Might want to hard set the PlayerController and PlayerGO here too
 
-        /*var tempPlayer = GameObject.FindGameObjectWithTag("Player");
-        if(tempPlayer != null)
-        {
-            player = tempPlayer.GetComponent<PlayerController>();
-        }
-
-        playerGo = GameObject.FindGameObjectWithTag("Player");
-        */
-        playerHit = playerGo.GetComponentInChildren<Hittable>();
+        SearchForAndAssignPlayer();
 
 
         if (SceneManager.sceneCount >= 2)
@@ -72,14 +78,16 @@ public class GameManager : MonoBehaviour
                 //Tried to have it wait until it finished
                 startUp.Awake();
                 if(currentTargetID != null)
-                    startUp.OnSceneStart(currentTargetID);
+                    startUp.OnSceneStart(currentTargetID, this);
                 //progressContainer.CurrentLevel(sceneStartID.sceneName);
             }
 
-
+            //Need to automatically assign the currentLevel
+            //currentLoadedLevel = "";
         }
         else
         {
+            playerInfo?.SetActive(false);
 
             //Prevent the game from being paused on the main menu
             _GamePauseBlocked = true;
@@ -87,7 +95,8 @@ public class GameManager : MonoBehaviour
             //Prevent player from accidently moving on main menu
             DisableControls();
 
-            player.gameObject.SetActive(false);
+            if (player != null)
+                player.gameObject.SetActive(false);
 
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
 
@@ -95,40 +104,51 @@ public class GameManager : MonoBehaviour
     }
 
     //Used to load up the player scene and the saved game. TODO: Add the option for multiple save slots
-    public void LoadGame(bool newGame)
+    public void LoadGame(bool newGame, int saveFile = 0)
     {
+        currentSaveFile = saveFile;
+
         StartCoroutine(FadeOutUIStuff(Dummy));
 
         //Fade out
         //Unload mainMenu
 
-        StartCoroutine(AsyncLoadGame(newGame));
+        StartCoroutine(AsyncLoadGame(newGame, currentSaveFile));
     }
 
-    public IEnumerator AsyncLoadGame(bool newGame)
+    public IEnumerator AsyncLoadGame(bool newGame, int saveGame = 0)
     {
-        //AsyncOperation playerSceneLoad = SceneManager.LoadSceneAsync("PlayerScene2");
-
-        //SceneManager.LoadScene(currentLoadedLevel, LoadSceneMode.Additive);
-        //LoadLevel(currentTargetID);
-
         Debug.Log("Deload MainMenu");
         AsyncOperation asyncMenuDeload = SceneManager.UnloadSceneAsync("MainMenu");
 
         yield return new WaitUntil(()=> { return asyncMenuDeload.isDone; });
-
-        //TODO: Provide prompt to make sure players don't accidently clear save data
+        
         if (newGame)
         {
             Debug.Log("New game save data created");
             progressContainer.ClearSaveData();
         }
+        else
+        {
+            //Put necessary cleanup for loading a previous save
+            progressContainer.LoadSaveFile(saveGame);
+        }
 
-        //I don't actually know why the sceneCount check is here
+        //Load the player weapons
+        gunManager.LoadPlayerSavedGuns(progressContainer.playerData.weaponOwnership);
+        gunManager.LoadPlayerSavedAmmo(progressContainer.playerData.extraAmmoCounts,progressContainer.playerData.currentAmmo);
+
+        //Load player health
+        player.healthController.tempHit = progressContainer.playerData.health;
+
+        //Potentially could load the player position since the first load is different from the scene load.
+        ////
+
+
         if (SceneManager.sceneCount < 2)
         {
             Debug.Log("Attempting to load: " + currentTargetID.sceneName.ToString() + " as starting scene");
-            LoadFirstLevel(progressContainer.progress.currentScene);
+            LoadFirstLevel(progressContainer.LoadLevel());
         }
         else
         {
@@ -150,6 +170,19 @@ public class GameManager : MonoBehaviour
        
 
         yield return null;
+    }
+
+    public void SearchForAndAssignPlayer()
+    {
+        playerInfo = GameObject.FindGameObjectWithTag("PlayerUI");
+
+        var playerGo = GameObject.FindGameObjectWithTag("Player");
+        if (playerGo != null)
+        {
+            player = playerGo.GetComponent<PlayerController>();
+            playerHit = playerGo.GetComponentInChildren<Hittable>();
+            gunManager = playerGo.GetComponent<PlayerGunManager>();
+        }
     }
 
     public void PauseGame(bool pauseGame)
@@ -180,7 +213,8 @@ public class GameManager : MonoBehaviour
 
     public void SetEnabledPlayerControls(bool enablePlayer)
     {
-        player.b_controlsDisabled = !enablePlayer;
+        if(player != null)
+            player.EnableDisableControls(enablePlayer);
     }
 
     public void RegisterObject(GameplayComponent gc)
@@ -223,8 +257,15 @@ public class GameManager : MonoBehaviour
         _GameGatheringObjects = false;
     }
 
+    //All GameplayObjects are updated here and paused as needed without changing the timescale
     public void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape) /*Put any pause locks here*/ )
+        {
+            PauseUnpause();
+        }
+
         //Pre update checks
         if (_GamePaused)
             return;
@@ -254,6 +295,7 @@ public class GameManager : MonoBehaviour
                     gc.GameplayUpdate();
             }
         }
+
     }
 
     //Demo specific functions. May not stick around for the full game
@@ -303,11 +345,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadFirstLevel(SceneStartID sceneStartID)
     {
-        
-
         DisableControls();
         currentTargetID = sceneStartID;
+        currentLoadedLevel = sceneStartID.sceneName;
 
+        //TODO: Probably should replace this with a cutscene activation
         StartCoroutine(FadeOutUIStuff(FirstActualLoad));
     }
 
@@ -318,13 +360,11 @@ public class GameManager : MonoBehaviour
         _GamePauseBlocked = false;
 
         player.gameObject.SetActive(true);
+        playerInfo?.SetActive(true);
         EnableControls();
     }
 
-    void Dummy()
-    {
-
-    }
+    void Dummy(){}
 
     private void LoadLevelActualLoad()
     {
@@ -359,6 +399,8 @@ public class GameManager : MonoBehaviour
             if (timesTried > 6)
             {
                 Debug.LogError("Failed to find sceneStartup for " + currentLoadedLevel.ToString());
+                var tempSceneStartup = new GameObject();
+                startUp = tempSceneStartup.AddComponent<SceneStartup>();
                 timesTried = 0;
                 break;
             }
@@ -368,7 +410,7 @@ public class GameManager : MonoBehaviour
         {
             //Tried to have it wait until it finished
             startUp.Awake();
-            startUp.OnSceneStart(sceneStartID);
+            startUp.OnSceneStart(sceneStartID, this);
         }
 
         //Figure out better way to make sure this gets everything in the scene properly
@@ -407,6 +449,8 @@ public class GameManager : MonoBehaviour
             if(timesTried > 6)
             {
                 Debug.LogError("Failed to find sceneStartup for " + currentLoadedLevel.ToString());
+                var tempSceneStartup = new GameObject();
+                startUp = tempSceneStartup.AddComponent<SceneStartup>();
                 timesTried = 0;
                 break;
             }
@@ -416,13 +460,18 @@ public class GameManager : MonoBehaviour
         {
             //Tried to have it wait until it finished
             startUp.Awake();
-            startUp.OnSceneStart(sceneStartID);
-            progressContainer.CurrentLevel(sceneStartID);
+            startUp.OnSceneStart(sceneStartID, this);
+
+            //Save scene ID to progress
+            progressContainer.SaveCurrentLevel(sceneStartID);
         }
 
         //Figure out better way to make sure this gets everything in the scene properly
         yield return new WaitForSecondsRealtime(0.5f);
         GetAllGameplayObjects();
+
+        //Basically the autosave. TODO: Test and make sure we don't screw over the player ammo wise or health wise. We could make a save post in most areas of the game.
+        progressContainer.SaveSaveFile(currentSaveFile);
 
         funcToRun.Invoke();
     }
@@ -493,7 +542,7 @@ public class GameManager : MonoBehaviour
 
     public MissionLoadInfo GetNextMissionLevelName()
     {
-        int lastCompleted = progressContainer.progress.lastCompletedLevel;
+        int lastCompleted = progressContainer.progress.currentLevel;
 
         foreach(MissionLoadInfo mli in missionOrderInfo.missions)
         {
@@ -504,5 +553,65 @@ public class GameManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void PurchaseWeapon(int gunEnum)
+    {
+        var gun = gunManager.avaliableGuns[gunEnum];
+        gun.avaliable = true;
+        gunManager.avaliableGuns[gunEnum] = gun;
+        gunManager.avaliableGuns[gunEnum].gun.extraAmmo = 6;
+
+        SaveWeaponInfo();
+    }
+
+    public void PurchaseAmmo(int gunEnum)
+    {
+        //Probably need to fill up the current ammo then the extra ammo. Might want to move the logic to the weapon.
+        gunManager.avaliableGuns[gunEnum].gun.GainAmmo(6);
+        SaveWeaponInfo();
+    }
+
+    public void SaveWeaponInfo()
+    {
+        progressContainer.playerData.SaveGunOwnership(gunManager.avaliableGuns);
+        progressContainer.playerData.SaveAmmoCounts(gunManager.avaliableGuns);
+
+        progressContainer.SaveSaveFile(currentSaveFile);
+    }
+
+    public void SaveGame()
+    {
+        progressContainer.SaveSaveFile(currentSaveFile);
+    }
+
+    public void PauseUnpause()
+    {
+        _GamePaused = !_GamePaused;
+        pauseMenu.SetActive(gamePaused);
+        Time.timeScale = gamePaused ? 0 : 1;
+    }
+
+    public void OpenCloseOptions()
+    {
+        controlsMenuOpen = false;
+        controlsMenu.SetActive(controlsMenuOpen);
+
+        optionMenuOpen = !optionMenuOpen;
+        optionsMenu.SetActive(optionMenuOpen);
+    }
+
+    public void OpenCloseControls()
+    {
+        optionMenuOpen = false;
+        optionsMenu.SetActive(optionMenuOpen);
+
+        controlsMenuOpen = !controlsMenuOpen;
+        controlsMenu.SetActive(controlsMenuOpen);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

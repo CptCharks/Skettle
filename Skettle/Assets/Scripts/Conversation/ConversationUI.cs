@@ -19,6 +19,12 @@ public class ConversationUI : MonoBehaviour
     public Sprite dialogueGeneric;
     public Sprite dialogueCharacter;
 
+    public GameObject promptButton_pf;
+    public GameObject promptBox;
+    public GameObject promptSortPanel;
+    public TextMeshProUGUI promptText;
+    List<GameObject> prompts = new List<GameObject>();
+
     Character previousLeftCharacter;
     Character.EmoteStruct previousLeftEmote;
     Character previousRightCharacter;
@@ -37,7 +43,6 @@ public class ConversationUI : MonoBehaviour
 
     public void EndConversation()
     {
-        
         chatSystem.SetActive(false);
         leftImage.gameObject.SetActive(false);
         rightImage.gameObject.SetActive(false);
@@ -45,6 +50,8 @@ public class ConversationUI : MonoBehaviour
 
     public void SetupConversation(Conversation.Section section)
     {
+        //TODO: Add check here to see if it's a prompt
+
         textIsScrolling = false;
         if(currentDialogueCoroutine != null)
             StopCoroutine(currentDialogueCoroutine);
@@ -137,10 +144,20 @@ public class ConversationUI : MonoBehaviour
 
         chatterName.text = section.currentChatter;
 
-        //Sub divide this to a phrase loader
-        //chatBox.text = section.phrase;
-        currentDialogueCoroutine = StartCoroutine(ScrollText());
+        if (!current_section.sectionIsPrompt)
+        {
+            chatSystem.SetActive(true);
+            promptBox.SetActive(false);
+            currentDialogueCoroutine = StartCoroutine(ScrollText());
+        }
+        else
+        {
+            chatSystem.SetActive(false);
 
+            promptText.text = "";
+            promptBox.SetActive(true);
+            currentDialogueCoroutine = StartCoroutine(LoadPrompts());
+        }
 
         //Do checks to see which side is talking and move/highlight them appropriately
     }
@@ -204,7 +221,6 @@ public class ConversationUI : MonoBehaviour
     }
 
     public bool textIsScrolling = false;
-
     IEnumerator ScrollText()
     {
         textIsScrolling = true;
@@ -233,5 +249,62 @@ public class ConversationUI : MonoBehaviour
         }
 
         conv_manager.ScrollReturnSignal();
+    }
+
+    IEnumerator LoadPrompts()
+    {
+        textIsScrolling = true;
+
+        int cnt = 0;
+        string temp = "";
+
+        while (textIsScrolling)
+        {
+            promptText.text = temp;
+            temp += current_section.phrase[cnt];
+
+            cnt++;
+
+            if (cnt >= current_section.phrase.Length)
+            {
+                promptText.text = current_section.phrase;
+
+                textIsScrolling = false;
+                break;
+                //Maybe just call back to the manager directly or send up an event signal
+            }
+
+            //StartCoroutine
+            yield return new WaitForSecondsRealtime(textSpeed);
+        }
+
+        foreach(GameObject go in prompts)
+        {
+            Destroy(go);
+        }
+
+        prompts.Clear();
+
+        int i = 0;
+        foreach (Conversation.Prompt prompt in current_section.prompts)
+        {
+            var p = Instantiate(promptButton_pf, promptSortPanel.transform);
+            prompts.Add(p);
+            p.GetComponentInChildren<TextMeshProUGUI>().text = prompt.promptText;
+            Button pb = p.GetComponent<Button>();
+            pb.onClick.AddListener(() => { PromptCallback(i, prompt.prompt_ID); }) ;
+            i++;
+        }
+
+        //Wait for answer
+    }
+
+    public void PromptCallback(int num, string promptID)
+    {
+        chatSystem.SetActive(true);
+
+        promptBox.SetActive(false);
+
+        conv_manager.PromptReturnSignal(num, promptID);
     }
 }

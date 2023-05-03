@@ -5,35 +5,46 @@ using UnityEngine;
 [System.Serializable]
 public class ProgressionData
 {
-    public SceneStartID currentScene;
-    public int lastCompletedLevel;
+    public SerialSceneData currentScene;
+    public int currentLevel;
+    public int currentDay;
     public bool foundTheEgg;
     public bool parentsDead;
-    public bool noWeapons;
+    public bool talkedToMayor;
+    public bool talkedToMatride;
+    public bool isMorning;
+    public int moneyGivenToMuseum;
 
     public ProgressionData()
     {
-        currentScene = null;
-        lastCompletedLevel = 0;
+        currentScene = new SerialSceneData();
+        currentLevel = 0;
+        currentDay = 0;
+        moneyGivenToMuseum = 0;
         foundTheEgg = false;
         parentsDead = false;
-        noWeapons = false;
+        isMorning = false;
+        talkedToMayor = false;
+        talkedToMatride = false;
     }
 
-    //TODO: Can potentialyl rework this to just create a generic scriptable object with the required strings
+
     public void ResetSceneID()
     {
-        currentScene = (SceneStartID)Resources.Load("SceneEntryPointIDs/HomeFarm/HomeFarm_Default", typeof(SceneStartID));
+        var startSceneID = (SceneStartID)Resources.Load("SceneEntryPointIDs/HomeFarm/HomeFarm_Default", typeof(SceneStartID));
+        currentScene.sceneName = startSceneID.sceneName;
+        currentScene.startID = startSceneID.startID;
     }
 
     public ProgressionData(ProgressContainer progressContainer)
     {
         var reference = progressContainer.progress;
         currentScene = reference.currentScene;
-        lastCompletedLevel = reference.lastCompletedLevel;
+        currentLevel = reference.currentLevel;
         foundTheEgg = reference.foundTheEgg;
         parentsDead = reference.parentsDead;
-        noWeapons = reference.noWeapons;
+        currentDay = reference.currentDay;
+        moneyGivenToMuseum = reference.moneyGivenToMuseum;
     }
 
 }

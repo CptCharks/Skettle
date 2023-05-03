@@ -115,6 +115,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 1
   f_distanceTillDestroy: 10
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 6432985754590227349, guid: d1f3c402edacd294e88f50f8ed497b76, type: 3}
   shake: {fileID: 4494184387633428708}
   sparks: {fileID: 980920421196459616}
@@ -5140,6 +5142,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 2
   f_distanceTillDestroy: 10
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 6432985754590227349, guid: d1f3c402edacd294e88f50f8ed497b76, type: 3}
   shake: {fileID: 5376315831261758359}
   sparks: {fileID: 988495721150852582}
@@ -29869,6 +29873,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 3
   f_distanceTillDestroy: 15
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 981601572100764780, guid: 2d02cf60768e2db4e9f0be9922b4aa95, type: 3}
   f_bulletSpeed: 20
   shake: {fileID: 912674854354566045}
@@ -39659,6 +39665,7 @@ Transform:
   - {fileID: 1054267257480179500}
   - {fileID: 2639100294806896075}
   - {fileID: 6116808646401350224}
+  - {fileID: 8608160863337604578}
   m_Father: {fileID: 5955703115912208729}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39738,6 +39745,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 0
   f_distanceTillDestroy: 10
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 6432985754590227349, guid: d1f3c402edacd294e88f50f8ed497b76, type: 3}
   shake: {fileID: 611450485780412256}
   sparks: {fileID: 3283605659820623832}
@@ -49607,6 +49616,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 3
   f_distanceTillDestroy: 20
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 981601572100764780, guid: 2d02cf60768e2db4e9f0be9922b4aa95, type: 3}
   f_bulletSpeed: 25
   shake: {fileID: 557856715870194833}
@@ -54626,6 +54637,8 @@ MonoBehaviour:
   currentAmmo: 0
   ammoType: 0
   f_distanceTillDestroy: 10
+  audioSource: {fileID: 0}
+  gunSoundEffect: {fileID: 0}
   bullet_prefab_test: {fileID: 6432985754590227349, guid: d1f3c402edacd294e88f50f8ed497b76, type: 3}
 --- !u!1 &6618481016627226459
 GameObject:
@@ -54849,6 +54862,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHealed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6618481017060869570
 GameObject:
   m_ObjectHideFlags: 0
@@ -54981,12 +54997,15 @@ MonoBehaviour:
   f_rollDistance: 2
   f_verticalSpeed: 1
   f_horizontalSpeed: 1
-  b_controlsDisabled: 0
   b_isRolling: 0
   b_isHit: 0
+  b_isCrouched: 0
+  b_isStunned: 0
+  b_isKnockedBack: 0
+  b_isAlive: 0
+  b_controlsDisabled: 0
   timeSinceLastRoll: 0
   timeBetweenRolls: 0.8
-  b_isSneaking: 0
   playerSprite: {fileID: 6618481017645507460}
   detectionCollider: {fileID: 6618481017060869570}
   crouchText: {fileID: 6618481016627226459}
@@ -54994,8 +55013,11 @@ MonoBehaviour:
   damageCollider: {fileID: 0}
   movementCollider: {fileID: 0}
   playerAnimator: {fileID: 6618481017645507462}
+  playerCorpse_pf: {fileID: 0}
   playerStand: {fileID: 21300000, guid: bd00aaf45b7b8874cae3d792a8f7eade, type: 3}
   playerRoll: {fileID: 21300000, guid: 59b48a8405141c144a943d919b8c58e5, type: 3}
+  flashColor: {r: 0, g: 0, b: 0, a: 0}
+  flashRate: 0.25
 --- !u!50 &6618481017359112503
 Rigidbody2D:
   serializedVersion: 4
@@ -69845,3 +69867,65 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1001 &5980238985910425066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 73344165387562783}
+    m_Modifications:
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.491
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.054
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704489771342393353, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+      propertyPath: m_Name
+      value: MuzzleFlash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+--- !u!4 &8608160863337604578 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2704489771342393352, guid: 2ce9556d6ee27f14faf3b1d1ab31914e, type: 3}
+  m_PrefabInstance: {fileID: 5980238985910425066}
+  m_PrefabAsset: {fileID: 0}

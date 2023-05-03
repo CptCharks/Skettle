@@ -32,7 +32,7 @@ public class EventTrigger : MonoBehaviour
 		if(repeatable || (!repeatable && firstShotExit))
 		{
 				firstShotExit = false;
-				onEntered.Invoke();
+				onExited.Invoke();
 		}
 	}
 }

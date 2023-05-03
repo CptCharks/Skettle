@@ -1,4 +1,4 @@
 public interface I_ProgressConditional
 { 
-    void ShowOrHide(ProgressionData data);
+    void ShowOrHide(ProgressContainer data);
 }
